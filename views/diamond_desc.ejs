@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Daimond World - DESC</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.0-beta1 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/styles.css" type="text/css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <div class="logo">
+                        <a href="/" title="logo"> Daimond Point </a>
+                    </div>
+                    <div class="mob-menu">
+                        <span>
+                            <i class="fa fa-bars"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="main-menu">
+                        <ul class="right-nav m-0">
+                            <li class="m-0"><a href="/auth/login"> <i class="fa fa-user"></i> Log in </a> </li>
+                            <li class="m-0"> <a href="/auth/register"> <i class="fa fa-sign-in"></i> Sign up </a> </li>
+                            <li class="m-0"><a href="/auth/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout
+                                </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <div class="loginform">
+            <form method="post" action="/diamond/diamondfilter">
+                <table>
+                    <% var shapes=['round','pear','princess','heart','cushion','oval'] %>
+                        <tr>
+                            <th>SHAPE</th>
+                            <td>
+                                <div class="d-flex flex-wrap mb-3">
+                                    <% for (var i=0; i<shapes.length; i++) { %>
+                                        <div class="mx-2 daimonds diamond-shap">
+                                            <input type="checkbox" class="d-checkbox" name="shapes[]"
+                                                id="<%= shapes[i] %>" value="<%= shapes[i] %>">
+                                            <label for="<%= shapes[i] %>">
+                                                <img
+                                                    src="http://www.karpgroup.com/Images/Shapes/<%= shapes[i] %>.png"><br>
+                                                <%= shapes[i] %>
+                                            </label>
+                                        </div>
+                                        <% } %>
+                                </div>
+
+                            </td>
+                        </tr>
+
+                        <% var colors=['D','F','E','L','K'] %>
+                            <tr>
+                                <th>COLORS</th>
+                                <td>
+                                    <div class="d-flex mb-3">
+                                        <% for (var i=0; i<colors.length; i++) { %>
+                                            <div class="mx-2 daimonds">
+                                                <input type="checkbox" name="colors[]" id="<%= colors[i] %>"
+                                                    value="<%= colors[i] %>">
+                                                <label for="<%= colors[i] %>">
+                                                    <%= colors[i] %>
+                                                </label>
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <% var clarity=['vvs1','vvs2','FL','vs1','sl1','sl2'] %>
+                                <tr>
+                                    <th>CLARITY</th>
+                                    <td>
+                                        <div class="d-flex ">
+                                            <% for (var i=0; i<clarity.length; i++) { %>
+                                                <div class="mx-2 daimonds">
+                                                    <input type="checkbox" name="clarity[]" id="<%= clarity[i] %>"
+                                                        value="<%= clarity[i] %>">
+                                                    <label for="<%= clarity[i] %>">
+                                                        <%= clarity[i] %>
+                                                    </label>
+                                                </div>
+                                                <% } %>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <% var cut=['EX','VG','GD','FR'] %>
+                                    <tr>
+                                        <th>CUT</th>
+                                        <td>
+                                            <div class="d-flex ">
+                                                <% for (var i=0; i<cut.length; i++) { %>
+                                                    <div class="mx-2 daimonds">
+                                                        <input type="checkbox" name="cut[]" id="c<%= cut[i] %>"
+                                                            value="<%= cut[i] %>">
+                                                        <label for="c<%= cut[i] %>">
+                                                            <%= cut[i] %>
+                                                        </label>
+                                                    </div>
+                                                    <% } %>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <% var finish=['EX','VG','GD','FR'] %>
+                                        <tr>
+                                            <th>FINISH</th>
+                                            <td>
+                                                <div class="d-flex ">
+                                                    <% for (var i=0; i<finish.length; i++) { %>
+                                                        <div class="mx-2 daimonds">
+                                                            <input type="checkbox" name="finish[]"
+                                                                id="f<%= finish[i] %>" value="<%= finish[i] %>">
+                                                            <label for="f<%= finish[i] %>">
+                                                                <%= finish[i] %>
+                                                            </label>
+                                                        </div>
+                                                        <% } %>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <% var symmetry=['EX','VG','GD','FR'] %>
+                                            <tr>
+                                                <th>SYMMETRY</th>
+                                                <td>
+                                                    <div class="d-flex ">
+                                                        <% for (var i=0; i<symmetry .length; i++) { %>
+                                                            <div class="mx-2 daimonds">
+                                                                <input type="checkbox" name="symmetry []"
+                                                                    id="s<%= symmetry [i] %>"
+                                                                    value="<%= symmetry [i] %>">
+                                                                <label for="s<%= symmetry [i] %>">
+                                                                    <%= symmetry [i] %>
+                                                                </label>
+                                                            </div>
+                                                            <% } %>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <% var lab=['GIA','HRD','IGI'] %>
+                                                <tr>
+                                                    <th>LAB</th>
+                                                    <td>
+                                                        <div class="d-flex ">
+                                                            <% for (var i=0; i<lab .length; i++) { %>
+                                                                <div class="mx-2 daimonds">
+                                                                    <input type="checkbox" name="lab []"
+                                                                        id="<%= lab [i] %>" value="<%= lab [i] %>">
+                                                                    <label for="<%= lab [i] %>">
+                                                                        <%= lab [i] %>
+                                                                    </label>
+                                                                </div>
+                                                                <% } %>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+
+
+                </table>
+                <button class="btn btn-primary my-3" type="submit">Get Result</button>
+
+                <!-- Submit button -->
+            </form>
+            <a href="/" class="btn btn-primary btn-block my-3">Reset</a>
+            <a href="/diamond/adddiamond" class="btn btn-primary btn-block my-3">Add Diamond</a>
+        </div>
+
+    </main>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/js/index.js"></script>
+    <script>
+        $(document).ready(() => {
+            $('.mob-menu span').click(() => {
+                $('.main-menu').slideToggle();
+            });
+        });
+    </script>
+</body>
+
+</html>

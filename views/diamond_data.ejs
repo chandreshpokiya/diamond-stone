@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Daimond World</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.0-beta1 -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/styles.css" type="text/css">
+
+</head>
+
+<body>
+    <main>
+
+
+        <div class="container">
+            <a href="/" class="my-3">back</a>
+
+            <div class="loginform">
+                <form method="post" action="/diamond/adddiamond">
+                    <table>
+                        <% var shapes=['round','pear','princess','heart','cushion','oval'] %>
+                            <tr>
+                                <th>SHAPE</th>
+                                <td>
+                                    <div class="d-flex flex-wrap mb-3">
+                                        <% for (var i=0; i<shapes.length; i++) { %>
+                                            <div class="mx-2 daimonds diamond-shap">
+                                                <input type="radio" class="d-checkbox" name="shape"
+                                                    id="<%= shapes[i] %>" value="<%= shapes[i] %>">
+                                                <label for="<%= shapes[i] %>">
+                                                    <img
+                                                        src="http://www.karpgroup.com/Images/Shapes/<%= shapes[i] %>.png"><br>
+                                                    <%= shapes[i] %>
+                                                </label>
+                                            </div>
+                                            <% } %>
+                                    </div>
+
+                                </td>
+                            </tr>
+
+                            <% var colors=['D','F','E','L','K'] %>
+                                <tr>
+                                    <th>COLORS</th>
+                                    <td>
+                                        <div class="d-flex mb-3">
+                                            <% for (var i=0; i<colors.length; i++) { %>
+                                                <div class="mx-2 daimonds">
+                                                    <input type="radio" name="color" id="<%= colors[i] %>"
+                                                        value="<%= colors[i] %>">
+                                                    <label for="<%= colors[i] %>">
+                                                        <%= colors[i] %>
+                                                    </label>
+                                                </div>
+                                                <% } %>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <% var clarity=['vvs1','vvs2','FL','vs1','sl1','sl2'] %>
+                                    <tr>
+                                        <th>CLARITY</th>
+                                        <td>
+                                            <div class="d-flex ">
+                                                <% for (var i=0; i<clarity.length; i++) { %>
+                                                    <div class="mx-2 daimonds">
+                                                        <input type="radio" name="clarity" id="<%= clarity[i] %>"
+                                                            value="<%= clarity[i] %>">
+                                                        <label for="<%= clarity[i] %>">
+                                                            <%= clarity[i] %>
+                                                        </label>
+                                                    </div>
+                                                    <% } %>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <% var cut=['EX','VG','GD','FR'] %>
+                                        <tr>
+                                            <th>CUT</th>
+                                            <td>
+                                                <div class="d-flex ">
+                                                    <% for (var i=0; i<cut.length; i++) { %>
+                                                        <div class="mx-2 daimonds">
+                                                            <input type="radio" name="cut" id="c<%= cut[i] %>"
+                                                                value="<%= cut[i] %>">
+                                                            <label for="c<%= cut[i] %>">
+                                                                <%= cut[i] %>
+                                                            </label>
+                                                        </div>
+                                                        <% } %>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <% var finish=['EX','VG','GD','FR'] %>
+                                            <tr>
+                                                <th>FINISH</th>
+                                                <td>
+                                                    <div class="d-flex ">
+                                                        <% for (var i=0; i<finish.length; i++) { %>
+                                                            <div class="mx-2 daimonds">
+                                                                <input type="radio" name="finish" id="f<%= finish[i] %>"
+                                                                    value="<%= finish[i] %>">
+                                                                <label for="f<%= finish[i] %>">
+                                                                    <%= finish[i] %>
+                                                                </label>
+                                                            </div>
+                                                            <% } %>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <% var symmetry=['EX','VG','GD','FR'] %>
+                                                <tr>
+                                                    <th>SYMMETRY</th>
+                                                    <td>
+                                                        <div class="d-flex ">
+                                                            <% for (var i=0; i<symmetry .length; i++) { %>
+                                                                <div class="mx-2 daimonds">
+                                                                    <input type="radio" name="symmetry"
+                                                                        id="s<%= symmetry [i] %>"
+                                                                        value="<%= symmetry [i] %>">
+                                                                    <label for="s<%= symmetry [i] %>">
+                                                                        <%= symmetry [i] %>
+                                                                    </label>
+                                                                </div>
+                                                                <% } %>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <% var lab=['GIA','HRD','IGI'] %>
+                                                    <tr>
+                                                        <th>LAB</th>
+                                                        <td>
+                                                            <div class="d-flex ">
+                                                                <% for (var i=0; i<lab .length; i++) { %>
+                                                                    <div class="mx-2 daimonds">
+                                                                        <input type="radio" name="lab"
+                                                                            id="<%= lab [i] %>" value="<%= lab [i] %>">
+                                                                        <label for="<%= lab [i] %>">
+                                                                            <%= lab [i] %>
+                                                                        </label>
+                                                                    </div>
+                                                                    <% } %>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                    </table>
+
+                    <!-- 2 column grid layout for inline styling -->
+                    <div class="row mb-4">
+                        <div class="col">
+                            <!-- Simple link -->
+                            <button class="btn btn-primary mt-4" type="submit">Add Diamond</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/js/index.js"></script>
+</body>
+
+</html>

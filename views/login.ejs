@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Daimond World</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.0-beta1 -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/styles.css" type="text/css">
+
+</head>
+
+<body>
+    <main>
+        <div class="loginform">
+            <form method="post" action="/auth/login">
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <input type="text" class="form-control form-control-lg" placeholder="email" name="email"
+                        aria-describedby="basic-addon1" required="">
+                </div>
+
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <input type="password" class="form-control form-control-lg" placeholder="password" name="password"
+                        aria-describedby="basic-addon1" required="">
+                </div>
+
+                <!-- 2 column grid layout for inline styling -->
+                <div class="row mb-4">
+
+                    <div class="col">
+                        <!-- Simple link -->
+                        <p>Don't have account ? <a href="/auth/register">Sign Up</a></p>
+                    </div>
+                </div>
+
+                <!-- Submit button -->
+                <button class="btn btn-primary btn-block mb-4" type="submit">Login</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/js/index.js"></script>
+</body>
+
+</html>

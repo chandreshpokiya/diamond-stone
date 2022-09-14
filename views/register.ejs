@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Daimond World</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.0-beta1 -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/styles.css" type="text/css">
+
+</head>
+
+<body>
+    <main>
+        <div class="loginform">
+            <form method="post" action="/auth/register">
+                <div class="form-outline mb-3">
+                    <input type="text" class="form-control form-control-lg" placeholder="first name" name="fname"
+                        required>
+                </div>
+                <div class="form-outline mb-3">
+                    <input type="text" class="form-control form-control-lg" placeholder="middle name" name="mname"
+                        required>
+                </div>
+                <div class="form-outline mb-3">
+                    <input type="text" class="form-control form-control-lg" placeholder="last name" name="lname"
+                        required>
+                </div>
+                <div class="form-outline mb-3">
+                    <input type="text" class="form-control form-control-lg" placeholder="email" name="email"
+                        aria-describedby="basic-addon1" required>
+                </div>
+                <div class="form-outline mb-3">
+                    <input type="text" class="form-control form-control-lg" placeholder="mobile" name="mobile"
+                        aria-describedby="basic-addon1" required>
+                </div>
+                <div class="form-outline mb-3">
+                    <input type="password" class="form-control form-control-lg" placeholder="password" name="password"
+                        aria-describedby="basic-addon1" required>
+                </div>
+                <div class="form-outline mb-3">
+                    <input type="password" class="form-control form-control-lg" placeholder="Confirm password"
+                        name="cpassword" aria-describedby="basic-addon1" required>
+                </div>
+                <!-- 2 column grid layout for inline styling -->
+                <div class="row mb-4">
+                    <div class="col">
+                        <p>Already have account? <a href="/auth/login">Login</a></p>
+                    </div>
+                </div>
+                <!-- Submit button -->
+                <button class="btn btn-primary btn-block mb-4" type="submit">Register</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/js/index.js"></script>
+</body>
+
+</html>
