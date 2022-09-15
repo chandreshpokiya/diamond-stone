@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Daimond World - DESC</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.0-beta1 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/styles.css" type="text/css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <div class="logo">
+                        <a href="/" title="logo"> Daimond Point </a>
+                    </div>
+                    <div class="mob-menu">
+                        <span>
+                            <i class="fa fa-bars"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="main-menu">
+                        <ul class="right-nav m-0">
+                            <li class="m-0"><a href="/auth/login"> <i class="fa fa-user"></i> Log in </a> </li>
+                            <li class="m-0"> <a href="/auth/register"> <i class="fa fa-sign-in"></i> Sign up </a> </li>
+                            <li class="m-0"><a href="/auth/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout
+                                </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="my-3">
+            <a href="/">back</a>
+        </div>
+    </div>
+
+    <main>
+        <% if(diamonds.length>0){ %>
+
+            <div class="table-responsives">
+                <table class="table table-bordered border-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col"><input type="checkbox"></th>
+                            <th scope="col">SHAPE</th>
+                            <th scope="col">COLOR</th>
+                            <th scope="col">CLARITY</th>
+                            <th scope="col">CUT</th>
+                            <th scope="col">FINISH</th>
+                            <th scope="col">SYMMETRY</th>
+                            <th scope="col">LAB</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for( var diamond of diamonds) { %>
+                            <tr>
+                                <th scope="row">
+                                    <input type="checkbox">
+                                </th>
+                                <td>
+                                    <img src="http://www.karpgroup.com/Images/Shapes/<%= diamond.shape %>.png" alt="">
+                                    <!-- <%= diamond.shape %> -->
+                                </td>
+                                <td>
+                                    <%= diamond.color %>
+                                </td>
+                                <td>
+                                    <%= diamond.clarity %>
+                                </td>
+                                <td>
+                                    <%= diamond.cut %>
+                                </td>
+                                <td>
+                                    <%= diamond.finish %>
+                                </td>
+                                <td>
+                                    <%= diamond.symmetry %>
+                                </td>
+                                <td>
+                                    <%= diamond.lab %>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </div>
+
+            <% } else { %>
+                <div class="text-center my-3">
+                    <p class="text-danger fs-4">No Data available</p>
+                </div>
+                <% } %>
+    </main>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/js/index.js"></script>
+    <script>
+        $(document).ready(() => {
+            $('.mob-menu span').click(() => {
+                $('.main-menu').slideToggle();
+            });
+        });
+    </script>
+</body>
+
+</html>

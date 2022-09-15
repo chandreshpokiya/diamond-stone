@@ -22,6 +22,10 @@
                 <div class="col-4">
                     <div class="logo">
                         <a href="/" title="logo"> Daimond Point </a>
+                        <br>
+                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvignette.wikia.nocookie.net%2Fmetalgear%2Fimages%2F3%2F33%2FUi_face_645_0.png%2Frevision%2Flatest%3Fcb%3D20160304184842&f=1&nofb=1"
+                            alt="user" class="rounded-circle object-fit-cover" height="40" width="40">
+                        <%= loggedUser.email %>
                     </div>
                     <div class="mob-menu">
                         <span>
@@ -48,143 +52,191 @@
         <div class="loginform">
             <form method="post" action="/diamond/diamondfilter">
                 <table>
-                    <% var shapes=['round','pear','princess','heart','cushion','oval'] %>
+                    <% var shapes=['All','round','pear','princess','heart','cushion','oval'] %>
                         <tr>
                             <th>SHAPE</th>
                             <td>
                                 <div class="d-flex flex-wrap mb-3">
                                     <% for (var i=0; i<shapes.length; i++) { %>
                                         <div class="mx-2 daimonds diamond-shap">
-                                            <input type="checkbox" class="d-checkbox" name="shapes[]"
-                                                id="<%= shapes[i] %>" value="<%= shapes[i] %>">
-                                            <label for="<%= shapes[i] %>">
-                                                <img
-                                                    src="http://www.karpgroup.com/Images/Shapes/<%= shapes[i] %>.png"><br>
-                                                <%= shapes[i] %>
-                                            </label>
+                                            <input type="checkbox" class="checkbox shapecheck" id="shp<%= shapes[i] %>"
+                                                <% if(shapes[i]=='All' ) { %> checked value="<%= shapes[i] %>" <% } %>
+                                                    <% if(shapes[i]!=='All' ) { %>
+                                                        value="<%= shapes[i] %>" name="shapes[]" checked
+                                                            <% } %>
+                                                                <% if(shapes[i]=='All' ) { %> onchange="checkAll(this)"
+                                                                    <% } %> >
+                                                                        <label for="shp<%= shapes[i] %>">
+                                                                            <% if(shapes[i]!=='All' ) { %> <img
+                                                                                    src="http://www.karpgroup.com/Images/Shapes/<%= shapes[i] %>.png">
+                                                                                <% } %>
+                                                                                    <br>
+                                                                                    <%= shapes[i] %>
+                                                                        </label>
                                         </div>
                                         <% } %>
                                 </div>
-
                             </td>
                         </tr>
 
-                        <% var colors=['D','F','E','L','K'] %>
+                        <% var colors=['All','D','F','E','L','K'] %>
                             <tr>
                                 <th>COLORS</th>
                                 <td>
                                     <div class="d-flex mb-3">
                                         <% for (var i=0; i<colors.length; i++) { %>
                                             <div class="mx-2 daimonds">
-                                                <input type="checkbox" name="colors[]" id="<%= colors[i] %>"
-                                                    value="<%= colors[i] %>">
-                                                <label for="<%= colors[i] %>">
-                                                    <%= colors[i] %>
-                                                </label>
+                                                <input type="checkbox" id="clr<%= colors[i] %>" <% if(colors[i]=='All' )
+                                                    { %> checked <% } %>
+                                                    <% if(colors[i]!=='All' ) { %>
+                                                        value="<%= colors[i] %>" name="colors[]" checked
+                                                            <% } %>
+                                                                <% if(colors[i]=='All' ) { %> onchange="checkAll(this)"
+                                                                    <% } %>
+                                                                        >
+                                                                        <label for="clr<%= colors[i] %>">
+                                                                            <%= colors[i] %>
+                                                                        </label>
                                             </div>
                                             <% } %>
                                     </div>
                                 </td>
                             </tr>
 
-                            <% var clarity=['vvs1','vvs2','FL','vs1','sl1','sl2'] %>
+                            <% var clarities=['All','vvs1','vvs2','FL','vs1','sl1','sl2'] %>
                                 <tr>
                                     <th>CLARITY</th>
                                     <td>
                                         <div class="d-flex ">
-                                            <% for (var i=0; i<clarity.length; i++) { %>
+                                            <% for (var i=0; i<clarities.length; i++) { %>
                                                 <div class="mx-2 daimonds">
-                                                    <input type="checkbox" name="clarity[]" id="<%= clarity[i] %>"
-                                                        value="<%= clarity[i] %>">
-                                                    <label for="<%= clarity[i] %>">
-                                                        <%= clarity[i] %>
-                                                    </label>
+                                                    <input type="checkbox" id="crt<%= clarities[i] %>" <%
+                                                        if(clarities[i]=='All' ) { %> checked <% } %>
+                                                        <% if(clarities[i]!=='All' ) { %>
+                                                            value="<%= clarities[i] %>" name="clarities[]" checked
+                                                                <% } %>
+                                                                    <% if(clarities[i]=='All' ) { %>
+                                                                        onchange="checkAll(this)" <% } %>
+                                                                            >
+                                                                            <label for="crt<%= clarities[i] %>">
+                                                                                <%= clarities[i] %>
+                                                                            </label>
                                                 </div>
                                                 <% } %>
                                         </div>
                                     </td>
                                 </tr>
 
-                                <% var cut=['EX','VG','GD','FR'] %>
+                                <% var cuts=['All','EX','VG','GD','FR'] %>
                                     <tr>
                                         <th>CUT</th>
                                         <td>
                                             <div class="d-flex ">
-                                                <% for (var i=0; i<cut.length; i++) { %>
+                                                <% for (var i=0; i<cuts.length; i++) { %>
                                                     <div class="mx-2 daimonds">
-                                                        <input type="checkbox" name="cut[]" id="c<%= cut[i] %>"
-                                                            value="<%= cut[i] %>">
-                                                        <label for="c<%= cut[i] %>">
-                                                            <%= cut[i] %>
-                                                        </label>
+                                                        <input type="checkbox" id="ct<%= cuts[i] %>" <%
+                                                            if(cuts[i]=='All' ) { %> checked <% } %>
+                                                            <% if(cuts[i]!=='All' ) { %>
+                                                                value="<%= cuts[i] %>" name="cuts[]" checked
+                                                                    <% } %>
+                                                                        <% if(cuts[i]=='All' ) { %>
+                                                                            onchange="checkAll(this)" <% } %>
+                                                                                >
+                                                                                <label for="ct<%= cuts[i] %>">
+                                                                                    <%= cuts[i] %>
+                                                                                </label>
                                                     </div>
                                                     <% } %>
                                             </div>
                                         </td>
                                     </tr>
 
-                                    <% var finish=['EX','VG','GD','FR'] %>
+                                    <% var finish=['All','EX','VG','GD','FR'] %>
                                         <tr>
                                             <th>FINISH</th>
                                             <td>
                                                 <div class="d-flex ">
                                                     <% for (var i=0; i<finish.length; i++) { %>
                                                         <div class="mx-2 daimonds">
-                                                            <input type="checkbox" name="finish[]"
-                                                                id="f<%= finish[i] %>" value="<%= finish[i] %>">
-                                                            <label for="f<%= finish[i] %>">
-                                                                <%= finish[i] %>
-                                                            </label>
+                                                            <input type="checkbox" id="fns<%= finish[i] %>" <%
+                                                                if(finish[i]=='All' ) { %> checked <% } %>
+                                                                <% if(finish[i]!=='All' ) { %>
+                                                                    value="<%= finish[i] %>" name="finishes[]" checked
+                                                                        <% } %>
+                                                                            <% if(finish[i]=='All' ) { %>
+                                                                                onchange="checkAll(this)" <% } %>
+                                                                                    >
+                                                                                    <label for="fns<%= finish[i] %>">
+                                                                                        <%= finish[i] %>
+                                                                                    </label>
                                                         </div>
                                                         <% } %>
                                                 </div>
                                             </td>
                                         </tr>
 
-                                        <% var symmetry=['EX','VG','GD','FR'] %>
+                                        <% var symmetry=['All','EX','VG','GD','FR'] %>
                                             <tr>
                                                 <th>SYMMETRY</th>
                                                 <td>
                                                     <div class="d-flex ">
                                                         <% for (var i=0; i<symmetry .length; i++) { %>
                                                             <div class="mx-2 daimonds">
-                                                                <input type="checkbox" name="symmetry []"
-                                                                    id="s<%= symmetry [i] %>"
-                                                                    value="<%= symmetry [i] %>">
-                                                                <label for="s<%= symmetry [i] %>">
-                                                                    <%= symmetry [i] %>
-                                                                </label>
+                                                                <input type="checkbox" id="smt<%= symmetry [i] %>" <%
+                                                                    if(symmetry[i]=='All' ) { %> checked <% } %>
+                                                                    <% if(symmetry[i]!=='All' ) { %>
+                                                                        value="<%= symmetry[i] %>" name="symmetries[]"
+                                                                            checked
+                                                                            <% } %>
+                                                                                <% if(symmetry[i]=='All' ) { %>
+                                                                                    onchange="checkAll(this)" <% } %>
+                                                                                        >
+                                                                                        <label
+                                                                                            for="smt<%= symmetry [i] %>">
+                                                                                            <%= symmetry [i] %>
+                                                                                        </label>
                                                             </div>
                                                             <% } %>
                                                     </div>
                                                 </td>
                                             </tr>
 
-                                            <% var lab=['GIA','HRD','IGI'] %>
+                                            <% var lab=['All','GIA','HRD','IGI'] %>
                                                 <tr>
                                                     <th>LAB</th>
                                                     <td>
                                                         <div class="d-flex ">
                                                             <% for (var i=0; i<lab .length; i++) { %>
                                                                 <div class="mx-2 daimonds">
-                                                                    <input type="checkbox" name="lab []"
-                                                                        id="<%= lab [i] %>" value="<%= lab [i] %>">
-                                                                    <label for="<%= lab [i] %>">
-                                                                        <%= lab [i] %>
-                                                                    </label>
+                                                                    <input type="checkbox" id="lb<%= lab [i] %>" <%
+                                                                        if(lab[i]=='All' ) { %> checked <% } %>
+                                                                        <% if(lab[i]!=='All' ) { %>
+                                                                            value="<%= lab[i] %>" name="labs[]"
+                                                                                checked
+                                                                                <% } %>
+                                                                                    <% if(lab[i]=='All' ) { %>
+                                                                                        onchange="checkAll(this)" <% }
+                                                                                            %>
+                                                                                            >
+                                                                                            <label
+                                                                                                for="lb<%= lab [i] %>">
+                                                                                                <%= lab [i] %>
+                                                                                            </label>
                                                                 </div>
                                                                 <% } %>
                                                         </div>
                                                     </td>
                                                 </tr>
-
-
-
                 </table>
                 <button class="btn btn-primary my-3" type="submit">Get Result</button>
 
                 <!-- Submit button -->
             </form>
+
+            <div class="my-3">
+                <a href="/diamond/diamondlist" class="btn btn-primary">View All</a>
+            </div>
+
             <a href="/" class="btn btn-primary btn-block my-3">Reset</a>
             <a href="/diamond/adddiamond" class="btn btn-primary btn-block my-3">Add Diamond</a>
         </div>
@@ -201,6 +253,22 @@
                 $('.main-menu').slideToggle();
             });
         });
+
+        const shapeCheckboxes = document.querySelectorAll('.shapecheck');
+        function checkAll(shapeCheckbox) {
+            if (shapeCheckbox.checked == true) {
+                shapeCheckboxes.forEach((checkbox, index) => {
+                    checkbox.checked = true;
+                })
+            }
+            else {
+                shapeCheckboxes.forEach((checkbox, index) => {
+                    checkbox.checked = false;
+                })
+            }
+        }
+
+
     </script>
 </body>
 
