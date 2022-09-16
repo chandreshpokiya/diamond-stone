@@ -11,26 +11,50 @@ export const getDiamonds = async (req, res) => {
 };
 
 export const filterDiamond = async (req, res) => {
-  // return res.send(req.body)
-  try {
-    var newDiamond = [];
-    const { shapes, colors, clarities, cuts, finishes, symmetries, labs } =
-      req.body;
+  const diamonds = await Diamond.find({ shape: req.body.shapes });
+  
+  var shapes;
+  var colors;
+  var clarities;
+  if (req.body.shapes == 'all') {
+    shapes = await Diamond.distinct('shape');
+  } else {
+    shapes = req.body.shapes;
+  }
+  
+  if (req.body.colors == 'all') {
+    colors = await Diamond.distinct('color');
+  } else {
+    colors = req.body.colors;
+  }
+  if (req.body.clarities == 'all') {
+    clarities = await Diamond.distinct('clarity');
+  } else {
+    clarities = req.body.clarities;
+  }
 
-    if (!shapes || !colors || !clarities || !cuts || !finishes || !symmetries || !labs) {
-      console.log('all fields are required');
-      return res.redirect('/')
-    }
+  // res.send(shapes);
+
+
+  try {
+    // const { shapes, colors, clarities, cuts, finishes, symmetries, labs } =
+    //   req.body;
+
+    // if (!shapes || !colors || !clarities || !cuts || !finishes || !symmetries || !labs) {
+    //   console.log('all fields are required');
+    //   return res.redirect('/')
+    // }
 
     const diamonds = await Diamond.find({
       shape: shapes,
       color: colors,
       clarity: clarities,
-      cut: cuts,
-      finish: finishes,
-      symmetry: symmetries,
-      lab: labs,
+      // cut: cuts,
+      // finish: finishes,
+      // symmetry: symmetries,
+      // lab: labs,
     });
+    
     return res.render("diamond_list.ejs", { diamonds: diamonds });
 
     // shapes.forEach(async (shape, index) => {

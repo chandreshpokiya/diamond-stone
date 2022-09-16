@@ -156,7 +156,7 @@ header {
   margin: 0 auto;
   margin-top: 100px;
 }
-.diamond-shap {
+.selectBtn {
   width: 100px;
   height: 90px;
   border-radius: 8px;
@@ -166,7 +166,7 @@ header {
   background: #f4f4f4;
   margin: 0 0 3px 16px;
 }
-.daimonds input {
+.selectBtn input {
   position: absolute;
   display: none;
   width: 10px;
@@ -176,14 +176,7 @@ header {
   z-index: 1;
   padding-bottom: 5px;
 }
-
-.daimonds input:checked ~ label {
-  color: #fff;
-  background-color: #5bc0de !important;
-  border-color: #46b8da !important;
-}
-
-.daimonds label {
+.selectBtn label {
   display: block;
   text-align: center;
   cursor: pointer;
@@ -192,5 +185,17 @@ header {
   height: 100%;
   width: 100%;
   border: 1px solid skyblue;
-  background-color: #fff;
+  background-color: transparent;
+}
+.selectBtn input:checked ~ label {
+  color: #fff;
+  background-color: #5bc0de !important;
+  border-color: #46b8da !important;
+}
+
+.selectedItem {
+  color: #fff;
+  border: 1px solid #46b8da;
+  background-color: #5bc0de !important;
+  border-color: #46b8da !important;
 }

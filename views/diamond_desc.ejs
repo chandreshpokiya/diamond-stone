@@ -51,8 +51,7 @@
 
         <div class="loginform">
             <form method="post" action="/diamond/diamondfilter">
-                <table>
-                    <% var shapes=['All','round','pear','princess','heart','cushion','oval'] %>
+                <!-- <table>
                         <tr>
                             <th>SHAPE</th>
                             <td>
@@ -79,15 +78,14 @@
                             </td>
                         </tr>
 
-                        <% var colors=['All','D','F','E','L','K'] %>
                             <tr>
                                 <th>COLORS</th>
                                 <td>
                                     <div class="d-flex mb-3">
                                         <% for (var i=0; i<colors.length; i++) { %>
                                             <div class="mx-2 daimonds">
-                                                <input type="checkbox" id="clr<%= colors[i] %>" <% if(colors[i]=='All' )
-                                                    { %> checked <% } %>
+                                                <input type="checkbox colorcheck" id="clr<%= colors[i] %>" <%
+                                                    if(colors[i]=='All' ) { %> checked <% } %>
                                                     <% if(colors[i]!=='All' ) { %>
                                                         value="<%= colors[i] %>" name="colors[]" checked
                                                             <% } %>
@@ -103,7 +101,6 @@
                                 </td>
                             </tr>
 
-                            <% var clarities=['All','vvs1','vvs2','FL','vs1','sl1','sl2'] %>
                                 <tr>
                                     <th>CLARITY</th>
                                     <td>
@@ -227,7 +224,86 @@
                                                         </div>
                                                     </td>
                                                 </tr>
+                </table> -->
+
+                <table>
+                    <tr>
+                        <th>SHAPE</th>
+                        <td>
+                            <div class="d-flex flex-wrap mb-3">
+                                <span class="selectBtn selectAllShape selectedItem" title="All">
+                                    <input type="checkbox " id="spall" onclick="javascript:checkAllclick(this);">
+                                    <label for="spall">All</label>
+                                </span>
+                                <% for (var shape of shapes) { %>
+
+                                    <span class="selectBtn" title="<%= shape %>">
+                                        <input type="checkbox" class="shapeCheck" id="sp<%= shape %>" name="shapes[]"
+                                            onclick="setValue(this);" value="<%= shape %>">
+                                        <label for="sp<%= shape %>">
+                                            <img src="http://www.karpgroup.com/Images/Shapes/<%= shape %>.png"
+                                                alt="<%= shape %>">
+                                            <%= shape %>
+                                        </label>
+                                    </span>
+                                    <% } %>
+
+                                        <input type="hidden" class="shapeLength" value="<%= shapes.length %>">
+
+                                        <input type="hidden" class="shapeValue" name="shapes[]" value="all">
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Color</th>
+                        <td>
+                            <div class="d-flex flex-wrap mb-3">
+                                <span class="selectBtn selectAllColor selectedItem" title="All">
+                                    <input type="checkbox " id="spall" onclick="javascript:checkAllclick(this);">
+                                    <label for="spall">All</label>
+                                </span>
+                                <% for (var color of colors) { %>
+
+                                    <span class="selectBtn" title="<%= color %>">
+                                        <input type="checkbox" class="colorCheck" id="clr<%= color %>" name="colors[]"
+                                            onclick="setColor(this);" value="<%= color %>">
+                                        <label for="clr<%= color %>">
+                                            <%= color %>
+                                        </label>
+                                    </span>
+                                    <% } %>
+                                        <input type="hidden" class="colorLength" value="<%= colors.length %>">
+                                        <input type="hidden" class="colorValue" name="colors[]" value="all">
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Clarity</th>
+                        <td>
+                            <div class="d-flex flex-wrap mb-3">
+                                <span class="selectBtn selectAllClarity selectedItem" title="All">
+                                    <input type="checkbox " id="spall" onclick="javascript:checkAllclick(this);">
+                                    <label for="spall">All</label>
+                                </span>
+                                <% for (var clarity of clarities) { %>
+
+                                    <span class="selectBtn" title="<%= clarity %>">
+                                        <input type="checkbox" class="clarityCheck" id="crty<%= clarity %>"
+                                            name="clarities[]" onclick="setClarity(this);" value="<%= clarity %>">
+                                        <label for="crty<%= clarity %>">
+                                            <%= clarity %>
+                                        </label>
+                                    </span>
+                                    <% } %>
+                                        <input type="hidden" class="clarityLength" value="<%= clarities.length %>">
+                                        <input type="hidden" class="clarityValue" name="clarities[]" value="all">
+                            </div>
+                        </td>
+                    </tr>
                 </table>
+
                 <button class="btn btn-primary my-3" type="submit">Get Result</button>
 
                 <!-- Submit button -->
@@ -254,19 +330,114 @@
             });
         });
 
-        const shapeCheckboxes = document.querySelectorAll('.shapecheck');
-        function checkAll(shapeCheckbox) {
-            if (shapeCheckbox.checked == true) {
-                shapeCheckboxes.forEach((checkbox, index) => {
-                    checkbox.checked = true;
-                })
+        const shapeValue = document.querySelector('.shapeValue');
+        const shapeLength = document.querySelector('.shapeLength');
+        const selectAllShape = document.querySelector('.selectAllShape');
+        const myValue = [];
+
+        const colorLength = document.querySelector('.colorLength');
+        const colorValue = document.querySelector('.colorValue');
+        const selectAllColor = document.querySelector('.selectAllColor');
+        const myColor = [];
+
+        const clarityLength = document.querySelector('.clarityLength');
+        const clarityValue = document.querySelector('.clarityValue');
+        const selectAllClarity = document.querySelector('.selectAllClarity');
+        const myClarity = [];
+
+        function setValue(myCheckbox) {
+            if (myCheckbox.checked) {
+                myValue.push(myCheckbox.value);
+                shapeValue.value = myValue;
+            } else {
+                myValue.pop(myCheckbox.value);
+                shapeValue.value = myValue;
             }
-            else {
-                shapeCheckboxes.forEach((checkbox, index) => {
-                    checkbox.checked = false;
-                })
+            if (myValue.length == 0) {
+                selectAllShape.className = 'selectBtn selectAllShape selectedItem';
+                shapeValue.value = 'all';
+            } else if (myValue.length > 0 && myValue.length <= shapeLength.value) {
+                selectAllShape.className = 'selectBtn selectAllShape';
+            }
+            if (myValue.length == `<%= shapes.length %>`) {
+                selectAllShape.className = 'selectBtn selectAllShape selectedItem';
+                shapeValue.value = 'all';
             }
         }
+        function setColor(myCheckbox) {
+            if (myCheckbox.checked) {
+                myColor.push(myCheckbox.value);
+                colorValue.value = myColor;
+            } else {
+                myColor.pop(myCheckbox.value);
+                colorValue.value = myColor;
+            }
+            if (myColor.length == 0) {
+                selectAllColor.className = 'selectBtn selectAllColor selectedItem';
+                colorValue.value = 'all';
+            } else if (myColor.length > 0 && myColor.length <= shapeLength.value) {
+                selectAllColor.className = 'selectBtn selectAllColor';
+            }
+            if (myColor.length == `<%= colors.length %>`) {
+                selectAllColor.className = 'selectBtn selectAllColor selectedItem';
+                colorValue.value = 'all';
+            }
+        }
+        function setClarity(myCheckbox) {
+            if (myCheckbox.checked) {
+                myClarity.push(myCheckbox.value);
+                clarityValue.value = myClarity;
+            } else {
+                myClarity.pop(myCheckbox.value);
+                clarityValue.value = myClarity;
+            }
+            if (myClarity.length == 0) {
+                selectAllClarity.className = 'selectBtn selectAllClarity selectedItem';
+                clarityValue.value = 'all';
+            } else if (myClarity.length > 0 && myClarity.length <= shapeLength.value) {
+                selectAllClarity.className = 'selectBtn selectAllClarity';
+            }
+            if (myClarity.length == `<%= clarities.length %>`) {
+                selectAllClarity.className = 'selectBtn selectAllClarity selectedItem';
+                clarityValue.value = 'all';
+            }
+        }
+
+        function checkAllclick(allCheck) {
+            if (allCheck.checked) {
+                selectAllShape.className = 'selectBtn selectAllShape selectedItem';
+                selectAllColor.className = 'selectBtn selectAllColor selectedItem';
+                selectAllClarity.className = 'selectBtn selectAllClarity selectedItem';
+                shapeValue.value = 'all';
+                colorValue.value = 'all';
+                clarityValue.value = 'all';
+            }
+            else {
+                selectAllColor.className = 'selectBtn selectAllColor selectedItem';
+                selectAllColor.className = 'selectBtn selectAllColor selectedItem';
+                selectAllClarity.className = 'selectBtn selectAllClarity selectedItem';
+                colorValue.value = 'all';
+                shapeValue.value = 'all';
+                clarityValue.value = 'all';
+            }
+        }
+
+
+        // const shapeCheckboxes = document.querySelectorAll('.shapecheck');
+        // const colorcheck = document.querySelectorAll('.colorcheck');
+
+        // function checkAll(shapeCheckbox) {
+        //     if (shapeCheckbox.checked == true) {
+        //         shapeCheckboxes.forEach((checkbox, index) => {
+        //             checkbox.checked = true;
+        //         })
+        //     }
+        //     else {
+        //         shapeCheckboxes.forEach((checkbox, index) => {
+        //             checkbox.checked = false;
+        //         })
+        //     }
+        // }
 
 
     </script>
