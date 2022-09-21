@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const diamondSchema = mongoose.Schema({
   shape: {
@@ -22,87 +22,39 @@ const diamondSchema = mongoose.Schema({
   lab: {
     type: String,
   },
-  stNo:{
-    type: String
+  flurocent: {
+    type: String,
   },
-  carat:{
-    type: String
+  girdle: {
+    type: String,
   },
-  rap:{
-    type: String
+  stNo: {
+    type: String,
   },
-  hna:{
-    type: String
+  carat: {
+    type: String,
   },
-  fluro:{
-    type: String
+  rap: {
+    type: String,
   },
-  lwr:{
-    type: String
+  lwratio: {
+    type: String,
   },
-  measurement:{
-    type: String
+  measurement: {
+    type: String,
   },
-  table:{
-    type: String
+  table: {
+    type: String,
   },
-  crown:{
-    type: String
+  crown: {
+    type: String,
   },
-  pav:{
-    type: String
+  pav: {
+    type: String,
   },
-  depth:{
-    type: String
+  depth: {
+    type: String,
   },
-  girdle:{
-    type: String
-  },
-  culet:{
-    type: String
-  },
-  shade:{
-    type: String
-  },
-  tblblk:{
-    type: String
-  },
-  sideblk:{
-    type: String
-  },
-  tblwht:{
-    type: String
-  },
-  sidewht:{
-    type: String
-  },
-  tblop:{
-    type: String
-  },
-  crwop:{
-    type: String
-  },
-  pavop:{
-    type: String
-  },
-  grfdop:{
-    type: String
-  },
-  milky:{
-    type: String
-  },
-  eyeClean:{
-    type: String
-  },
-  inscription:{
-    type: String
-  },
-  certNo:{
-    type: String
-  },
-  pairNo:{
-    type: String
-  }
 });
 
-export default mongoose.model('Diamond', diamondSchema);
+export default mongoose.model("Diamond", diamondSchema);

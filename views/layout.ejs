@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+ 
+<head>
+    <title>Daimond World - DESC</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.0-beta1 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css"
+        integrity="sha512-0p3K0H3S6Q4bEWZ/WmC94Tgit2ular2/n0ESdfEX8l172YyQj8re1Wu9s/HT9T/T2osUw5Gx/6pAZNk3UKbESw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/styles.css" type="text/css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-light ">
+            <a class="navbar-brand" href="/">
+                <img src="/images/KARPLogo.png" alt="logo">
+            </a>
+
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> -->
+            <ul class="navbar-nav gap-3 d-flex flex-row align-items-center">
+                <li>
+                    <div class="user text-center">
+                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvignette.wikia.nocookie.net%2Fmetalgear%2Fimages%2F3%2F33%2FUi_face_645_0.png%2Frevision%2Flatest%3Fcb%3D20160304184842&f=1&nofb=1"
+                            alt="user" class="rounded-circle object-fit-cover" height="40" width="40">
+                        <span>
+                            <%= loggedUser.email %>
+                        </span>
+                    </div>
+                </li>
+                <!-- <li><a href="/auth/login"> Log in </a> </li>
+                    <li><a href="/auth/register"> Sign up </a> </li> -->
+                <li><a href="/auth/logout" style="line-height: 40px;"> Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <%- body %>
+
+        <!-- Bootstrap JavaScript Libraries -->
+        <script src="/js/popper.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"
+            integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="/js/index.js"></script>
+        <script>
+            $(document).ready(() => {
+                $('.mob-menu span').click(() => {
+                    $('.main-menu').slideToggle();
+                });
+            });
+
+            <% if (flash.success && flash.success.length > 0) { %>
+                new Noty({
+                    text: '<%= flash.success %>',
+                    timeout: 1500,
+                    theme: 'bootstrap-v4',
+                    layout: 'topRight',
+                    type: 'success',
+                }).show();
+            <% } %>
+
+            <% if (flash.error && flash.error.length > 0) { %>
+                new Noty({
+                    text: '<%= flash.error %>',
+                    timeout: 1500,
+                    theme: 'bootstrap-v4',
+                    layout: 'topRight',
+                    type: 'error',
+                }).show();
+            <% } %>
+
+        </script>
+</body>
+
+</html>

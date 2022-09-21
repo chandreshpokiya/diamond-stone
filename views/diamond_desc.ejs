@@ -1,446 +1,584 @@
-<!doctype html>
-<html lang="en">
+<main>
 
-<head>
-    <title>Daimond World - DESC</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <div class="loginform">
+        <form method="post" action="/diamond/diamondfilter">
 
-    <!-- Bootstrap CSS v5.2.0-beta1 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="/css/styles.css" type="text/css">
-</head>
+            <table>
+                <tr>
+                    <th>SHAPE</th>
+                    <td>
+                        <div class="d-flex flex-wrap mb-3">
+                            <span class="selectBtn selectAllShape selectedItem" id="selectBtn-shape-all" title="All">
+                                <input type="checkbox" class="shapeAllBtn" id="spall" onclick="checkAllclick(this);">
+                                <label for="spall">All</label>
+                            </span>
+                            <% for (var shape of shapes) { %>
 
-<body>
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-4">
-                    <div class="logo">
-                        <a href="/" title="logo"> Daimond Point </a>
-                        <br>
-                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvignette.wikia.nocookie.net%2Fmetalgear%2Fimages%2F3%2F33%2FUi_face_645_0.png%2Frevision%2Flatest%3Fcb%3D20160304184842&f=1&nofb=1"
-                            alt="user" class="rounded-circle object-fit-cover" height="40" width="40">
-                        <%= loggedUser.email %>
-                    </div>
-                    <div class="mob-menu">
-                        <span>
-                            <i class="fa fa-bars"></i>
-                        </span>
-                    </div>
-                </div>
-                <div class="col-8">
-                    <div class="main-menu">
-                        <ul class="right-nav m-0">
-                            <li class="m-0"><a href="/auth/login"> <i class="fa fa-user"></i> Log in </a> </li>
-                            <li class="m-0"> <a href="/auth/register"> <i class="fa fa-sign-in"></i> Sign up </a> </li>
-                            <li class="m-0"><a href="/auth/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout
-                                </a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main>
-
-        <div class="loginform">
-            <form method="post" action="/diamond/diamondfilter">
-                <!-- <table>
-                        <tr>
-                            <th>SHAPE</th>
-                            <td>
-                                <div class="d-flex flex-wrap mb-3">
-                                    <% for (var i=0; i<shapes.length; i++) { %>
-                                        <div class="mx-2 daimonds diamond-shap">
-                                            <input type="checkbox" class="checkbox shapecheck" id="shp<%= shapes[i] %>"
-                                                <% if(shapes[i]=='All' ) { %> checked value="<%= shapes[i] %>" <% } %>
-                                                    <% if(shapes[i]!=='All' ) { %>
-                                                        value="<%= shapes[i] %>" name="shapes[]" checked
-                                                            <% } %>
-                                                                <% if(shapes[i]=='All' ) { %> onchange="checkAll(this)"
-                                                                    <% } %> >
-                                                                        <label for="shp<%= shapes[i] %>">
-                                                                            <% if(shapes[i]!=='All' ) { %> <img
-                                                                                    src="http://www.karpgroup.com/Images/Shapes/<%= shapes[i] %>.png">
-                                                                                <% } %>
-                                                                                    <br>
-                                                                                    <%= shapes[i] %>
-                                                                        </label>
-                                        </div>
-                                        <% } %>
-                                </div>
-                            </td>
-                        </tr>
-
-                            <tr>
-                                <th>COLORS</th>
-                                <td>
-                                    <div class="d-flex mb-3">
-                                        <% for (var i=0; i<colors.length; i++) { %>
-                                            <div class="mx-2 daimonds">
-                                                <input type="checkbox colorcheck" id="clr<%= colors[i] %>" <%
-                                                    if(colors[i]=='All' ) { %> checked <% } %>
-                                                    <% if(colors[i]!=='All' ) { %>
-                                                        value="<%= colors[i] %>" name="colors[]" checked
-                                                            <% } %>
-                                                                <% if(colors[i]=='All' ) { %> onchange="checkAll(this)"
-                                                                    <% } %>
-                                                                        >
-                                                                        <label for="clr<%= colors[i] %>">
-                                                                            <%= colors[i] %>
-                                                                        </label>
-                                            </div>
-                                            <% } %>
-                                    </div>
-                                </td>
-                            </tr>
-
-                                <tr>
-                                    <th>CLARITY</th>
-                                    <td>
-                                        <div class="d-flex ">
-                                            <% for (var i=0; i<clarities.length; i++) { %>
-                                                <div class="mx-2 daimonds">
-                                                    <input type="checkbox" id="crt<%= clarities[i] %>" <%
-                                                        if(clarities[i]=='All' ) { %> checked <% } %>
-                                                        <% if(clarities[i]!=='All' ) { %>
-                                                            value="<%= clarities[i] %>" name="clarities[]" checked
-                                                                <% } %>
-                                                                    <% if(clarities[i]=='All' ) { %>
-                                                                        onchange="checkAll(this)" <% } %>
-                                                                            >
-                                                                            <label for="crt<%= clarities[i] %>">
-                                                                                <%= clarities[i] %>
-                                                                            </label>
-                                                </div>
-                                                <% } %>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <% var cuts=['All','EX','VG','GD','FR'] %>
-                                    <tr>
-                                        <th>CUT</th>
-                                        <td>
-                                            <div class="d-flex ">
-                                                <% for (var i=0; i<cuts.length; i++) { %>
-                                                    <div class="mx-2 daimonds">
-                                                        <input type="checkbox" id="ct<%= cuts[i] %>" <%
-                                                            if(cuts[i]=='All' ) { %> checked <% } %>
-                                                            <% if(cuts[i]!=='All' ) { %>
-                                                                value="<%= cuts[i] %>" name="cuts[]" checked
-                                                                    <% } %>
-                                                                        <% if(cuts[i]=='All' ) { %>
-                                                                            onchange="checkAll(this)" <% } %>
-                                                                                >
-                                                                                <label for="ct<%= cuts[i] %>">
-                                                                                    <%= cuts[i] %>
-                                                                                </label>
-                                                    </div>
-                                                    <% } %>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <% var finish=['All','EX','VG','GD','FR'] %>
-                                        <tr>
-                                            <th>FINISH</th>
-                                            <td>
-                                                <div class="d-flex ">
-                                                    <% for (var i=0; i<finish.length; i++) { %>
-                                                        <div class="mx-2 daimonds">
-                                                            <input type="checkbox" id="fns<%= finish[i] %>" <%
-                                                                if(finish[i]=='All' ) { %> checked <% } %>
-                                                                <% if(finish[i]!=='All' ) { %>
-                                                                    value="<%= finish[i] %>" name="finishes[]" checked
-                                                                        <% } %>
-                                                                            <% if(finish[i]=='All' ) { %>
-                                                                                onchange="checkAll(this)" <% } %>
-                                                                                    >
-                                                                                    <label for="fns<%= finish[i] %>">
-                                                                                        <%= finish[i] %>
-                                                                                    </label>
-                                                        </div>
-                                                        <% } %>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <% var symmetry=['All','EX','VG','GD','FR'] %>
-                                            <tr>
-                                                <th>SYMMETRY</th>
-                                                <td>
-                                                    <div class="d-flex ">
-                                                        <% for (var i=0; i<symmetry .length; i++) { %>
-                                                            <div class="mx-2 daimonds">
-                                                                <input type="checkbox" id="smt<%= symmetry [i] %>" <%
-                                                                    if(symmetry[i]=='All' ) { %> checked <% } %>
-                                                                    <% if(symmetry[i]!=='All' ) { %>
-                                                                        value="<%= symmetry[i] %>" name="symmetries[]"
-                                                                            checked
-                                                                            <% } %>
-                                                                                <% if(symmetry[i]=='All' ) { %>
-                                                                                    onchange="checkAll(this)" <% } %>
-                                                                                        >
-                                                                                        <label
-                                                                                            for="smt<%= symmetry [i] %>">
-                                                                                            <%= symmetry [i] %>
-                                                                                        </label>
-                                                            </div>
-                                                            <% } %>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <% var lab=['All','GIA','HRD','IGI'] %>
-                                                <tr>
-                                                    <th>LAB</th>
-                                                    <td>
-                                                        <div class="d-flex ">
-                                                            <% for (var i=0; i<lab .length; i++) { %>
-                                                                <div class="mx-2 daimonds">
-                                                                    <input type="checkbox" id="lb<%= lab [i] %>" <%
-                                                                        if(lab[i]=='All' ) { %> checked <% } %>
-                                                                        <% if(lab[i]!=='All' ) { %>
-                                                                            value="<%= lab[i] %>" name="labs[]"
-                                                                                checked
-                                                                                <% } %>
-                                                                                    <% if(lab[i]=='All' ) { %>
-                                                                                        onchange="checkAll(this)" <% }
-                                                                                            %>
-                                                                                            >
-                                                                                            <label
-                                                                                                for="lb<%= lab [i] %>">
-                                                                                                <%= lab [i] %>
-                                                                                            </label>
-                                                                </div>
-                                                                <% } %>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                </table> -->
-
-                <table>
-                    <tr>
-                        <th>SHAPE</th>
-                        <td>
-                            <div class="d-flex flex-wrap mb-3">
-                                <span class="selectBtn selectAllShape selectedItem" title="All">
-                                    <input type="checkbox " id="spall" onclick="javascript:checkAllclick(this);">
-                                    <label for="spall">All</label>
+                                <span class="selectBtn" title="<%= shape %>" id="selectBtn-shape">
+                                    <input type="checkbox" class="shapeCheck" id="sp<%= shape %>" name="shapes[]"
+                                        onclick="setValue(this);" value="<%= shape %>">
+                                    <label for="sp<%= shape %>">
+                                        <img src="http://www.karpgroup.com/Images/Shapes/<%= shape %>.png"
+                                            alt="<%= shape %>">
+                                        <%= shape %>
+                                    </label>
                                 </span>
-                                <% for (var shape of shapes) { %>
+                                <% } %>
 
-                                    <span class="selectBtn" title="<%= shape %>">
-                                        <input type="checkbox" class="shapeCheck" id="sp<%= shape %>" name="shapes[]"
-                                            onclick="setValue(this);" value="<%= shape %>">
-                                        <label for="sp<%= shape %>">
-                                            <img src="http://www.karpgroup.com/Images/Shapes/<%= shape %>.png"
-                                                alt="<%= shape %>">
-                                            <%= shape %>
-                                        </label>
+                                    <input type="hidden" class="shapeLength" value="<%= shapes.length %>">
+
+                                    <input type="hidden" class="shapeValue" name="shapes[]" value="all">
+
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Color</th>
+                    <td>
+                        <div class="d-flex flex-wrap mb-3">
+                            <span class="selectBtn selectAllColor selectedItem" title="All">
+                                <input type="checkbox " id="clrall" class="colorAllBtn" onclick="checkAllclick(this);">
+                                <label for="clrall">All</label>
+                            </span>
+                            <% for (var color of colors) { %>
+
+                                <span class="selectBtn" title="<%= color %>">
+                                    <input type="checkbox" class="colorCheck" id="clr<%= color %>" name="colors[]"
+                                        onclick="setColor(this);" value="<%= color %>">
+                                    <label for="clr<%= color %>">
+                                        <%= color %>
+                                    </label>
+                                </span>
+                                <% } %>
+                                    <input type="hidden" class="colorLength" value="<%= colors.length %>">
+                                    <input type="hidden" class="colorValue" name="colors[]" value="all">
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Clarity</th>
+                    <td>
+                        <div class="d-flex flex-wrap mb-3">
+                            <span class="selectBtn selectAllClarity selectedItem" title="All">
+                                <input type="checkbox " id="clrtall" class="clarityAllBtn"
+                                    onclick="checkAllclick(this);">
+                                <label for="clrtall">All</label>
+                            </span>
+                            <% for (var clarity of clarities) { %>
+
+                                <span class="selectBtn" title="<%= clarity %>">
+                                    <input type="checkbox" class="clarityCheck" id="crty<%= clarity %>"
+                                        name="clarities[]" onclick="setClarity(this);" value="<%= clarity %>">
+                                    <label for="crty<%= clarity %>">
+                                        <%= clarity %>
+                                    </label>
+                                </span>
+                                <% } %>
+                                    <input type="hidden" class="clarityLength" value="<%= clarities.length %>">
+                                    <input type="hidden" class="clarityValue" name="clarities[]" value="all">
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>CUT TYPE</th>
+                    <td>
+                        <% var cutTypes=['3X', 'EX-' , 'VG+' , 'VG-' ] %>
+                            <div class="d-flex flex-wrap mb-3">
+                                <% for (var cutType of cutTypes) { %>
+
+                                    <span class="selectBtn" title="<%= cutType %>">
+                                        <button type="button" class="labCheck" id="cuttype<%= cutType %>"
+                                            onclick="setCutType(this);" value="<%= cutType %>">
+                                            <%= cutType %>
+                                        </button>
                                     </span>
                                     <% } %>
-
-                                        <input type="hidden" class="shapeLength" value="<%= shapes.length %>">
-
-                                        <input type="hidden" class="shapeValue" name="shapes[]" value="all">
-
+                                        <!-- <input type="hidden" class="labLength" value="<%= labs.length %>">
+                                    <input type="hidden" class="labValue" name="labs[]" value="all"> -->
                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Color</th>
-                        <td>
-                            <div class="d-flex flex-wrap mb-3">
-                                <span class="selectBtn selectAllColor selectedItem" title="All">
-                                    <input type="checkbox " id="spall" onclick="javascript:checkAllclick(this);">
-                                    <label for="spall">All</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Cut</th>
+                    <td>
+                        <div class="d-flex flex-wrap mb-3">
+                            <span class="selectBtn selectAllCut selectedItem" title="All">
+                                <input type="checkbox " id="ctall" class="cutAllBtn" onclick="checkAllclick(this);">
+                                <label for="ctall">All</label>
+                            </span>
+                            <% for (var cut of cuts) { %>
+
+                                <span class="selectBtn" title="<%= cut %>">
+                                    <input type="checkbox" class="cutCheck" id="ct<%= cut %>" name="cuts[]"
+                                        onclick="setCut(this);" value="<%= cut %>">
+                                    <label for="ct<%= cut %>">
+                                        <%= cut %>
+                                    </label>
                                 </span>
-                                <% for (var color of colors) { %>
+                                <% } %>
+                                    <input type="hidden" class="cutLength" value="<%= cuts.length %>">
+                                    <input type="hidden" class="cutValue" name="cuts[]" value="all">
+                        </div>
+                    </td>
+                </tr>
 
-                                    <span class="selectBtn" title="<%= color %>">
-                                        <input type="checkbox" class="colorCheck" id="clr<%= color %>" name="colors[]"
-                                            onclick="setColor(this);" value="<%= color %>">
-                                        <label for="clr<%= color %>">
-                                            <%= color %>
-                                        </label>
-                                    </span>
-                                    <% } %>
-                                        <input type="hidden" class="colorLength" value="<%= colors.length %>">
-                                        <input type="hidden" class="colorValue" name="colors[]" value="all">
-                            </div>
-                        </td>
-                    </tr>
+                <tr>
+                    <th>Finish</th>
+                    <td>
+                        <div class="d-flex flex-wrap mb-3">
+                            <span class="selectBtn selectAllFinish selectedItem" title="All">
+                                <input type="checkbox " id="finishall" class="finishAllBtn"
+                                    onclick="checkAllclick(this);">
+                                <label for="finishall">All</label>
+                            </span>
+                            <% for (var finish of finishes) { %>
 
-                    <tr>
-                        <th>Clarity</th>
-                        <td>
-                            <div class="d-flex flex-wrap mb-3">
-                                <span class="selectBtn selectAllClarity selectedItem" title="All">
-                                    <input type="checkbox " id="spall" onclick="javascript:checkAllclick(this);">
-                                    <label for="spall">All</label>
+                                <span class="selectBtn" title="<%= finish %>">
+                                    <input type="checkbox" class="finishCheck" id="fn<%= finish%>" name="finishes[]"
+                                        onclick="setFinish(this);" value="<%= finish %>">
+                                    <label for="fn<%= finish %>">
+                                        <%= finish %>
+                                    </label>
                                 </span>
-                                <% for (var clarity of clarities) { %>
+                                <% } %>
+                                    <input type="hidden" class="finishLength" value="<%= finishes.length %>">
+                                    <input type="hidden" class="finishValue" name="finishes[]" value="all">
+                        </div>
+                    </td>
+                </tr>
 
-                                    <span class="selectBtn" title="<%= clarity %>">
-                                        <input type="checkbox" class="clarityCheck" id="crty<%= clarity %>"
-                                            name="clarities[]" onclick="setClarity(this);" value="<%= clarity %>">
-                                        <label for="crty<%= clarity %>">
-                                            <%= clarity %>
-                                        </label>
-                                    </span>
-                                    <% } %>
-                                        <input type="hidden" class="clarityLength" value="<%= clarities.length %>">
-                                        <input type="hidden" class="clarityValue" name="clarities[]" value="all">
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+                <tr>
+                    <th>Symmetry</th>
+                    <td>
+                        <div class="d-flex flex-wrap mb-3">
+                            <span class="selectBtn selectAllSymmetry selectedItem" title="All">
+                                <input type="checkbox " id="smtall" class="symmetryAllBtn"
+                                    onclick="checkAllclick(this);">
+                                <label for="smtall">All</label>
+                            </span>
+                            <% for (var symmetry of symmetries) { %>
 
-                <button class="btn btn-primary my-3" type="submit">Get Result</button>
+                                <span class="selectBtn" title="<%= symmetry %>">
+                                    <input type="checkbox" class="symmetryCheck" id="smt<%= symmetry%>"
+                                        name="symmetries[]" onclick="setSymmetry(this);" value="<%= symmetry %>">
+                                    <label for="smt<%= symmetry %>">
+                                        <%= symmetry %>
+                                    </label>
+                                </span>
+                                <% } %>
+                                    <input type="hidden" class="symmetryLength" value="<%= symmetries.length %>">
+                                    <input type="hidden" class="symmetryValue" name="symmetries[]" value="all">
+                        </div>
+                    </td>
+                </tr>
 
-                <!-- Submit button -->
-            </form>
+                <tr>
+                    <th>Lab</th>
+                    <td>
+                        <div class="d-flex flex-wrap mb-3">
+                            <span class="selectBtn selectAllLab selectedItem" title="All">
+                                <input type="checkbox " id="laball" class="labAllBtn" onclick="checkAllclick(this);">
+                                <label for="laball">All</label>
+                            </span>
+                            <% for (var lab of labs) { %>
 
-            <div class="my-3">
-                <a href="/diamond/diamondlist" class="btn btn-primary">View All</a>
-            </div>
+                                <span class="selectBtn" title="<%= lab %>">
+                                    <input type="checkbox" class="labCheck" id="lab<%= lab %>" name="labs[]"
+                                        onclick="setLab(this);" value="<%= lab %>">
+                                    <label for="lab<%= lab %>">
+                                        <%= lab %>
+                                    </label>
+                                </span>
+                                <% } %>
+                                    <input type="hidden" class="labLength" value="<%= labs.length %>">
+                                    <input type="hidden" class="labValue" name="labs[]" value="all">
+                        </div>
+                    </td>
+                </tr>
 
-            <a href="/" class="btn btn-primary btn-block my-3">Reset</a>
-            <a href="/diamond/adddiamond" class="btn btn-primary btn-block my-3">Add Diamond</a>
+            </table>
+
+            <button class="btn btn-primary my-3" type="submit">Get Result</button>
+
+            <!-- Submit button -->
+        </form>
+
+        <div class="my-3">
+            <a href="/diamond/diamondlist" class="btn btn-primary">View All</a>
         </div>
 
-    </main>
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="/js/popper.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="/js/index.js"></script>
-    <script>
-        $(document).ready(() => {
-            $('.mob-menu span').click(() => {
-                $('.main-menu').slideToggle();
-            });
+        <a href="/" class="btn btn-primary btn-block my-3">Reset</a>
+        <a href="/diamond/adddiamond" class="btn btn-primary btn-block my-3">Add Diamond</a>
+    </div>
+
+</main>
+<!-- Bootstrap JavaScript Libraries -->
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="/js/index.js"></script>
+<script>
+    $(document).ready(() => {
+        $('.mob-menu span').click(() => {
+            $('.main-menu').slideToggle();
         });
+    });
 
-        const shapeValue = document.querySelector('.shapeValue');
-        const shapeLength = document.querySelector('.shapeLength');
-        const selectAllShape = document.querySelector('.selectAllShape');
-        const myValue = [];
+    const shapeValue = document.querySelector('.shapeValue');
+    const shapeLength = document.querySelector('.shapeLength');
+    const selectAllShape = document.querySelector('.selectAllShape');
+    const myValue = [];
 
-        const colorLength = document.querySelector('.colorLength');
-        const colorValue = document.querySelector('.colorValue');
-        const selectAllColor = document.querySelector('.selectAllColor');
-        const myColor = [];
+    const colorLength = document.querySelector('.colorLength');
+    const colorValue = document.querySelector('.colorValue');
+    const selectAllColor = document.querySelector('.selectAllColor');
+    const myColor = [];
 
-        const clarityLength = document.querySelector('.clarityLength');
-        const clarityValue = document.querySelector('.clarityValue');
-        const selectAllClarity = document.querySelector('.selectAllClarity');
-        const myClarity = [];
+    const clarityLength = document.querySelector('.clarityLength');
+    const clarityValue = document.querySelector('.clarityValue');
+    const selectAllClarity = document.querySelector('.selectAllClarity');
+    const myClarity = [];
 
-        function setValue(myCheckbox) {
-            if (myCheckbox.checked) {
-                myValue.push(myCheckbox.value);
-                shapeValue.value = myValue;
-            } else {
-                myValue.pop(myCheckbox.value);
-                shapeValue.value = myValue;
+    const cutLength = document.querySelector('.cutLength');
+    const cutValue = document.querySelector('.cutValue');
+    const selectAllCut = document.querySelector('.selectAllCut');
+    const myCut = [];
+
+    const finishLength = document.querySelector('.finishLength');
+    const finishValue = document.querySelector('.finishValue');
+    const selectAllFinish = document.querySelector('.selectAllFinish');
+    const myFinish = [];
+
+    const symmetryLength = document.querySelector('.symmetryLength');
+    const symmetryValue = document.querySelector('.symmetryValue');
+    const selectAllSymmetry = document.querySelector('.selectAllSymmetry');
+    const mySymmetry = [];
+
+    const labLength = document.querySelector('.labLength');
+    const labValue = document.querySelector('.labValue');
+    const selectAllLab = document.querySelector('.selectAllLab');
+    const myLab = [];
+
+    function setValue(myCheckbox) {
+        if (myCheckbox.checked) {
+            myValue.push(myCheckbox.value);
+            shapeValue.value = myValue;
+        } else {
+            myValue.pop(myCheckbox.value);
+            shapeValue.value = myValue;
+        }
+        if (myValue.length == 0) {
+            selectAllShape.className = 'selectBtn selectAllShape selectedItem';
+            shapeValue.value = 'all';
+        } else if (myValue.length > 0 && myValue.length <= shapeLength.value) {
+            selectAllShape.className = 'selectBtn selectAllShape';
+        }
+        if (myValue.length == `<%= shapes.length %>`) {
+            selectAllShape.className = 'selectBtn selectAllShape selectedItem';
+            shapeValue.value = 'all';
+        }
+    }
+    function setColor(myCheckbox) {
+        if (myCheckbox.checked) {
+            myColor.push(myCheckbox.value);
+            colorValue.value = myColor;
+        } else {
+            myColor.pop(myCheckbox.value);
+            colorValue.value = myColor;
+        }
+        if (myColor.length == 0) {
+            selectAllColor.className = 'selectBtn selectAllColor selectedItem';
+            colorValue.value = 'all';
+        } else if (myColor.length > 0 && myColor.length <= shapeLength.value) {
+            selectAllColor.className = 'selectBtn selectAllColor';
+        }
+        if (myColor.length == `<%= colors.length %>`) {
+            selectAllColor.className = 'selectBtn selectAllColor selectedItem';
+            colorValue.value = 'all';
+        }
+    }
+    function setClarity(myCheckbox) {
+        if (myCheckbox.checked) {
+            myClarity.push(myCheckbox.value);
+            clarityValue.value = myClarity;
+        } else {
+            myClarity.pop(myCheckbox.value);
+            clarityValue.value = myClarity;
+        }
+        if (myClarity.length == 0) {
+            selectAllClarity.className = 'selectBtn selectAllClarity selectedItem';
+            clarityValue.value = 'all';
+        } else if (myClarity.length > 0 && myClarity.length <= shapeLength.value) {
+            selectAllClarity.className = 'selectBtn selectAllClarity';
+        }
+        if (myClarity.length == `<%= clarities.length %>`) {
+            selectAllClarity.className = 'selectBtn selectAllClarity selectedItem';
+            clarityValue.value = 'all';
+        }
+    }
+    function setCut(myCheckbox) {
+        if (myCheckbox.checked) {
+            myCut.push(myCheckbox.value);
+            cutValue.value = myCut;
+        } else {
+            myCut.pop(myCheckbox.value);
+            cutValue.value = myCut;
+        }
+        if (myCut.length == 0) {
+            selectAllCut.className = 'selectBtn selectAllCut selectedItem';
+            cutValue.value = 'all';
+        } else if (myCut.length > 0 && myCut.length <= shapeLength.value) {
+            selectAllCut.className = 'selectBtn selectAllCut';
+        }
+        if (myCut.length == `<%= cuts.length %>`) {
+            selectAllCut.className = 'selectBtn selectAllCut selectedItem';
+            cutValue.value = 'all';
+        }
+    }
+
+    function setFinish(myCheckbox) {
+        if (myCheckbox.checked) {
+            myFinish.push(myCheckbox.value);
+            finishValue.value = myFinish;
+        } else {
+            myFinish.pop(myCheckbox.value);
+            finishValue.value = myFinish;
+        }
+        if (myFinish.length == 0) {
+            selectAllFinish.className = 'selectBtn selectAllFinish selectedItem';
+            finishValue.value = 'all';
+        } else if (myFinish.length > 0 && myFinish.length <= shapeLength.value) {
+            selectAllFinish.className = 'selectBtn selectAllFinish';
+        }
+        if (myFinish.length == `<%= finishes.length %>`) {
+            selectAllFinish.className = 'selectBtn selectAllFinish selectedItem';
+            finishValue.value = 'all';
+        }
+    }
+
+    function setSymmetry(myCheckbox) {
+        if (myCheckbox.checked) {
+            mySymmetry.push(myCheckbox.value);
+            symmetryValue.value = mySymmetry;
+        } else {
+            mySymmetry.pop(myCheckbox.value);
+            symmetryValue.value = mySymmetry;
+        }
+        if (mySymmetry.length == 0) {
+            selectAllSymmetry.className = 'selectBtn selectAllSymmetry selectedItem';
+            symmetryValue.value = 'all';
+        } else if (mySymmetry.length > 0 && mySymmetry.length <= shapeLength.value) {
+            selectAllSymmetry.className = 'selectBtn selectAllSymmetry';
+        }
+        if (mySymmetry.length == `<%= symmetries.length %>`) {
+            selectAllSymmetry.className = 'selectBtn selectAllSymmetry selectedItem';
+            symmetryValue.value = 'all';
+        }
+    }
+
+    function setLab(myCheckbox) {
+        if (myCheckbox.checked) {
+            myLab.push(myCheckbox.value);
+            labValue.value = myLab;
+        } else {
+            myLab.pop(myCheckbox.value);
+            labValue.value = myLab;
+        }
+        if (myLab.length == 0) {
+            selectAllLab.className = 'selectBtn selectAllLab selectedItem';
+            labValue.value = 'all';
+        } else if (myLab.length > 0 && myLab.length <= shapeLength.value) {
+            selectAllLab.className = 'selectBtn selectAllLab';
+        }
+        if (myLab.length == `<%= labs.length %>`) {
+            selectAllLab.className = 'selectBtn selectAllLab selectedItem';
+            labValue.value = 'all';
+        }
+    }
+
+    function checkAllclick(allCheck) {
+        allCheck.parentNode.className = 'selectBtn selectAllShape selectedItem'
+
+
+        if (allCheck.classList.contains('shapeAllBtn')) {
+            shapeValue.value = 'all';
+        }
+        if (allCheck.classList.contains('colorAllBtn')) {
+            colorValue.value = 'all';
+        }
+        if (allCheck.classList.contains('clarityAllBtn')) {
+            clarityValue.value = 'all';
+        }
+        if (allCheck.classList.contains('cutAllBtn')) {
+            cutValue.value = 'all';
+        }
+        if (allCheck.classList.contains('finishAllBtn')) {
+            finishValue.value = 'all';
+        }
+        if (allCheck.classList.contains('symmetryAllBtn')) {
+            symmetryValue.value = 'all';
+        }
+        if (allCheck.classList.contains('labAllBtn')) {
+            labValue.value = 'all';
+        }
+    }
+
+
+    const cutChecks = document.querySelectorAll('.cutCheck');
+    const finishChecks = document.querySelectorAll('.finishCheck');
+    const symmetryChecks = document.querySelectorAll('.symmetryCheck');
+
+    const cutAllBtn = document.querySelector('.cutAllBtn');
+    const finishAllBtn = document.querySelector('.finishAllBtn');
+    const symmetryAllBtn = document.querySelector('.symmetryAllBtn');
+
+
+    function setCutType(cutBtn) {
+        console.log(cutBtn.value)
+
+
+        if (cutBtn.value == '3X') {
+            cutValue.value = 'EX';
+            finishValue.value = 'EX';
+            symmetryValue.value = 'EX';
+            for (var cutCheck of cutChecks) {
+                if (cutCheck.value == 'EX') {
+                    cutCheck.checked = true;
+                    selectAllCut.className = 'selectBtn selectAllCut';
+                }
             }
-            if (myValue.length == 0) {
-                selectAllShape.className = 'selectBtn selectAllShape selectedItem';
-                shapeValue.value = 'all';
-            } else if (myValue.length > 0 && myValue.length <= shapeLength.value) {
-                selectAllShape.className = 'selectBtn selectAllShape';
+            for (var finishCheck of finishChecks) {
+                if (finishCheck.value == 'EX') {
+                    finishCheck.checked = true;
+                    selectAllFinish.className = 'selectBtn selectAllFinish';
+                }
             }
-            if (myValue.length == `<%= shapes.length %>`) {
-                selectAllShape.className = 'selectBtn selectAllShape selectedItem';
-                shapeValue.value = 'all';
+            for (var symmetryCheck of symmetryChecks) {
+                if (symmetryCheck.value == 'EX') {
+                    symmetryCheck.checked = true;
+                    selectAllSymmetry.className = 'selectBtn selectAllSymmetry';
+                }
             }
         }
-        function setColor(myCheckbox) {
-            if (myCheckbox.checked) {
-                myColor.push(myCheckbox.value);
-                colorValue.value = myColor;
-            } else {
-                myColor.pop(myCheckbox.value);
-                colorValue.value = myColor;
-            }
-            if (myColor.length == 0) {
-                selectAllColor.className = 'selectBtn selectAllColor selectedItem';
-                colorValue.value = 'all';
-            } else if (myColor.length > 0 && myColor.length <= shapeLength.value) {
-                selectAllColor.className = 'selectBtn selectAllColor';
-            }
-            if (myColor.length == `<%= colors.length %>`) {
-                selectAllColor.className = 'selectBtn selectAllColor selectedItem';
-                colorValue.value = 'all';
-            }
-        }
-        function setClarity(myCheckbox) {
-            if (myCheckbox.checked) {
-                myClarity.push(myCheckbox.value);
-                clarityValue.value = myClarity;
-            } else {
-                myClarity.pop(myCheckbox.value);
-                clarityValue.value = myClarity;
-            }
-            if (myClarity.length == 0) {
-                selectAllClarity.className = 'selectBtn selectAllClarity selectedItem';
-                clarityValue.value = 'all';
-            } else if (myClarity.length > 0 && myClarity.length <= shapeLength.value) {
-                selectAllClarity.className = 'selectBtn selectAllClarity';
-            }
-            if (myClarity.length == `<%= clarities.length %>`) {
-                selectAllClarity.className = 'selectBtn selectAllClarity selectedItem';
-                clarityValue.value = 'all';
-            }
-        }
 
-        function checkAllclick(allCheck) {
-            if (allCheck.checked) {
-                selectAllShape.className = 'selectBtn selectAllShape selectedItem';
-                selectAllColor.className = 'selectBtn selectAllColor selectedItem';
-                selectAllClarity.className = 'selectBtn selectAllClarity selectedItem';
-                shapeValue.value = 'all';
-                colorValue.value = 'all';
-                clarityValue.value = 'all';
+        if (cutBtn.value == 'EX-') {
+            cutValue.value = 'all';
+            finishValue.value = 'all';
+            symmetryValue.value = 'all';
+
+            cutAllBtn.checkd = true
+            finishAllBtn.checkd = true
+            symmetryAllBtn.checkd = true
+
+            cutAllBtn.parentNode.className = 'selectBtn selectAllShape selectedItem'
+            finishAllBtn.parentNode.className = 'selectBtn selectAllShape selectedItem'
+            symmetryAllBtn.parentNode.className = 'selectBtn selectAllShape selectedItem'
+            for (var cutCheck of cutChecks) {
+                cutCheck.checked = false;
             }
-            else {
-                selectAllColor.className = 'selectBtn selectAllColor selectedItem';
-                selectAllColor.className = 'selectBtn selectAllColor selectedItem';
-                selectAllClarity.className = 'selectBtn selectAllClarity selectedItem';
-                colorValue.value = 'all';
-                shapeValue.value = 'all';
-                clarityValue.value = 'all';
+            for (var finishCheck of finishChecks) {
+                finishCheck.checked = false;
+            }
+            for (var symmetryCheck of symmetryChecks) {
+                symmetryCheck.checked = false;
             }
         }
 
 
-        // const shapeCheckboxes = document.querySelectorAll('.shapecheck');
-        // const colorcheck = document.querySelectorAll('.colorcheck');
+        if (cutBtn.value == 'VG+') {
 
-        // function checkAll(shapeCheckbox) {
-        //     if (shapeCheckbox.checked == true) {
-        //         shapeCheckboxes.forEach((checkbox, index) => {
-        //             checkbox.checked = true;
-        //         })
-        //     }
-        //     else {
-        //         shapeCheckboxes.forEach((checkbox, index) => {
-        //             checkbox.checked = false;
-        //         })
-        //     }
-        // }
+            cutValue.value = 'EX,VG';
+            finishValue.value = 'EX,VG';
+            symmetryValue.value = 'EX,VG';
+
+            for (var cutCheck of cutChecks) {
+                if (cutCheck.value == 'EX') {
+                    cutCheck.checked = true;
+                    selectAllCut.className = 'selectBtn selectAllCut';
+                }
+                if (cutCheck.value == 'VG') {
+                    cutCheck.checked = true;
+                    selectAllCut.className = 'selectBtn selectAllCut';
+                }
+            }
+            for (var finishCheck of finishChecks) {
+                if (finishCheck.value == 'EX') {
+                    finishCheck.checked = true;
+                    selectAllFinish.className = 'selectBtn selectAllFinish';
+                }
+                if (finishCheck.value == 'VG') {
+                    finishCheck.checked = true;
+                    selectAllFinish.className = 'selectBtn selectAllFinish';
+                }
+            }
+            for (var symmetryCheck of symmetryChecks) {
+                if (symmetryCheck.value == 'EX') {
+                    symmetryCheck.checked = true;
+                    selectAllSymmetry.className = 'selectBtn selectAllSymmetry';
+                }
+                if (symmetryCheck.value == 'VG') {
+                    symmetryCheck.checked = true;
+                    selectAllSymmetry.className = 'selectBtn selectAllSymmetry';
+                }
+            }
+        }
+
+        if (cutBtn.value == 'VG-') {
+
+            cutValue.value = 'GD,VG,FR';
+            finishValue.value = 'GD,VG,FR';
+            symmetryValue.value = 'GD,VG,FR';
+
+            for (var cutCheck of cutChecks) {
+                cutCheck.checked = false;
+                if (cutCheck.value == 'GD') {
+                    cutCheck.checked = true;
+                    selectAllCut.className = 'selectBtn selectAllCut';
+                }
+                if (cutCheck.value == 'VG') {
+                    cutCheck.checked = true;
+                    selectAllCut.className = 'selectBtn selectAllCut';
+                }
+                if (cutCheck.value == 'FR') {
+                    cutCheck.checked = true;
+                    selectAllCut.className = 'selectBtn selectAllCut';
+                }
+            }
+            for (var finishCheck of finishChecks) {
+                finishCheck.checked = false;
+                if (finishCheck.value == 'GD') {
+                    finishCheck.checked = true;
+                    selectAllFinish.className = 'selectBtn selectAllFinish';
+                }
+                if (finishCheck.value == 'VG') {
+                    finishCheck.checked = true;
+                    selectAllFinish.className = 'selectBtn selectAllFinish';
+                }
+                if (finishCheck.value == 'FR') {
+                    finishCheck.checked = true;
+                    selectAllFinish.className = 'selectBtn selectAllFinish';
+                }
+            }
+            for (var symmetryCheck of symmetryChecks) {
+                symmetryCheck.checked = false;
+                if (symmetryCheck.value == 'GD') {
+                    symmetryCheck.checked = true;
+                    selectAllSymmetry.className = 'selectBtn selectAllSymmetry';
+                }
+                if (symmetryCheck.value == 'VG') {
+                    symmetryCheck.checked = true;
+                    selectAllSymmetry.className = 'selectBtn selectAllSymmetry';
+                }
+                if (symmetryCheck.value == 'FR') {
+                    symmetryCheck.checked = true;
+                    selectAllSymmetry.className = 'selectBtn selectAllSymmetry';
+                }
+            }
+        }
+    }
 
 
-    </script>
-</body>
-
-</html>
+</script>
