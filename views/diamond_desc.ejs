@@ -230,44 +230,49 @@
     const shapeValue = document.querySelector('.shapeValue');
     const shapeLength = document.querySelector('.shapeLength');
     const selectAllShape = document.querySelector('.selectAllShape');
-    const myValue = [];
+    var myValue = [];
 
     const colorLength = document.querySelector('.colorLength');
     const colorValue = document.querySelector('.colorValue');
     const selectAllColor = document.querySelector('.selectAllColor');
-    const myColor = [];
+    var myColor = [];
 
     const clarityLength = document.querySelector('.clarityLength');
     const clarityValue = document.querySelector('.clarityValue');
     const selectAllClarity = document.querySelector('.selectAllClarity');
-    const myClarity = [];
+    var myClarity = [];
 
     const cutLength = document.querySelector('.cutLength');
     const cutValue = document.querySelector('.cutValue');
     const selectAllCut = document.querySelector('.selectAllCut');
-    const myCut = [];
+    var myCut = [];
 
     const finishLength = document.querySelector('.finishLength');
     const finishValue = document.querySelector('.finishValue');
     const selectAllFinish = document.querySelector('.selectAllFinish');
-    const myFinish = [];
+    var myFinish = [];
 
     const symmetryLength = document.querySelector('.symmetryLength');
     const symmetryValue = document.querySelector('.symmetryValue');
     const selectAllSymmetry = document.querySelector('.selectAllSymmetry');
-    const mySymmetry = [];
+    var mySymmetry = [];
 
     const labLength = document.querySelector('.labLength');
     const labValue = document.querySelector('.labValue');
     const selectAllLab = document.querySelector('.selectAllLab');
-    const myLab = [];
+    var myLab = [];
+
+
+    const shapeChecks = document.querySelectorAll('.shapeCheck');
+    console.log(shapeChecks);
 
     function setValue(myCheckbox) {
         if (myCheckbox.checked) {
             myValue.push(myCheckbox.value);
             shapeValue.value = myValue;
         } else {
-            myValue.pop(myCheckbox.value);
+            // myValue.pop(myCheckbox.value);
+            myValue.splice(myValue.indexOf(myCheckbox.value), 1);
             shapeValue.value = myValue;
         }
         if (myValue.length == 0) {
@@ -280,13 +285,23 @@
             selectAllShape.className = 'selectBtn selectAllShape selectedItem';
             shapeValue.value = 'all';
         }
+
+        // for (var shapeCheck of shapeChecks) {
+        //     console.log(shapeCheck.value)
+        //     if (!shapeCheck.checked) {
+        //         myValue.splice(myValue.indexOf(shapeCheck.value), 1);
+        //         shapeValue.value = myValue;
+        //     }
+        // }
+
     }
     function setColor(myCheckbox) {
         if (myCheckbox.checked) {
             myColor.push(myCheckbox.value);
             colorValue.value = myColor;
         } else {
-            myColor.pop(myCheckbox.value);
+            // myColor.pop(myCheckbox.value);
+            myColor.splice(myColor.indexOf(myCheckbox.value), 1);
             colorValue.value = myColor;
         }
         if (myColor.length == 0) {
@@ -305,7 +320,8 @@
             myClarity.push(myCheckbox.value);
             clarityValue.value = myClarity;
         } else {
-            myClarity.pop(myCheckbox.value);
+            // myClarity.pop(myCheckbox.value);
+            myClarity.splice(myClarity.indexOf(myCheckbox.value), 1);
             clarityValue.value = myClarity;
         }
         if (myClarity.length == 0) {
@@ -324,7 +340,8 @@
             myCut.push(myCheckbox.value);
             cutValue.value = myCut;
         } else {
-            myCut.pop(myCheckbox.value);
+            // myCut.pop(myCheckbox.value);
+            myCut.splice(myCut.indexOf(myCheckbox.value), 1);
             cutValue.value = myCut;
         }
         if (myCut.length == 0) {
@@ -344,7 +361,8 @@
             myFinish.push(myCheckbox.value);
             finishValue.value = myFinish;
         } else {
-            myFinish.pop(myCheckbox.value);
+            // myFinish.pop(myCheckbox.value);
+            myFinish.splice(myFinish.indexOf(myCheckbox.value), 1);
             finishValue.value = myFinish;
         }
         if (myFinish.length == 0) {
@@ -364,7 +382,8 @@
             mySymmetry.push(myCheckbox.value);
             symmetryValue.value = mySymmetry;
         } else {
-            mySymmetry.pop(myCheckbox.value);
+            // mySymmetry.pop(myCheckbox.value);
+            mySymmetry.splice(mySymmetry.indexOf(myCheckbox.value), 1);
             symmetryValue.value = mySymmetry;
         }
         if (mySymmetry.length == 0) {
@@ -384,7 +403,8 @@
             myLab.push(myCheckbox.value);
             labValue.value = myLab;
         } else {
-            myLab.pop(myCheckbox.value);
+            // myLab.pop(myCheckbox.value);
+            myLab.splice(myLab.indexOf(myCheckbox.value), 1);
             labValue.value = myLab;
         }
         if (myLab.length == 0) {
@@ -404,24 +424,31 @@
 
 
         if (allCheck.classList.contains('shapeAllBtn')) {
+            myValue = [];
             shapeValue.value = 'all';
         }
         if (allCheck.classList.contains('colorAllBtn')) {
+            myColor = [];
             colorValue.value = 'all';
         }
         if (allCheck.classList.contains('clarityAllBtn')) {
+            myClarity = [];
             clarityValue.value = 'all';
         }
         if (allCheck.classList.contains('cutAllBtn')) {
+            myCut = [];
             cutValue.value = 'all';
         }
         if (allCheck.classList.contains('finishAllBtn')) {
+            myFinish = [];
             finishValue.value = 'all';
         }
         if (allCheck.classList.contains('symmetryAllBtn')) {
+            mySymmetry = [];
             symmetryValue.value = 'all';
         }
         if (allCheck.classList.contains('labAllBtn')) {
+            myLab = [];
             labValue.value = 'all';
         }
     }
@@ -437,26 +464,29 @@
 
 
     function setCutType(cutBtn) {
-        console.log(cutBtn.value)
-
-
         if (cutBtn.value == '3X') {
-            cutValue.value = 'EX';
-            finishValue.value = 'EX';
-            symmetryValue.value = 'EX';
+            myCut = ['EX'];
+            cutValue.value = myCut;
+            myFinish = ['EX'];
+            finishValue.value = myFinish;
+            mySymmetry = ['EX'];
+            symmetryValue.value = mySymmetry;
             for (var cutCheck of cutChecks) {
+                cutCheck.checked = false;
                 if (cutCheck.value == 'EX') {
                     cutCheck.checked = true;
                     selectAllCut.className = 'selectBtn selectAllCut';
                 }
             }
             for (var finishCheck of finishChecks) {
+                finishCheck.checked = false;
                 if (finishCheck.value == 'EX') {
                     finishCheck.checked = true;
                     selectAllFinish.className = 'selectBtn selectAllFinish';
                 }
             }
             for (var symmetryCheck of symmetryChecks) {
+                symmetryCheck.checked = false;
                 if (symmetryCheck.value == 'EX') {
                     symmetryCheck.checked = true;
                     selectAllSymmetry.className = 'selectBtn selectAllSymmetry';
@@ -465,17 +495,20 @@
         }
 
         if (cutBtn.value == 'EX-') {
+            myCut = [];
             cutValue.value = 'all';
+            myFinish = [];
             finishValue.value = 'all';
+            mySymmetry = [];
             symmetryValue.value = 'all';
 
             cutAllBtn.checkd = true
             finishAllBtn.checkd = true
             symmetryAllBtn.checkd = true
 
-            cutAllBtn.parentNode.className = 'selectBtn selectAllShape selectedItem'
-            finishAllBtn.parentNode.className = 'selectBtn selectAllShape selectedItem'
-            symmetryAllBtn.parentNode.className = 'selectBtn selectAllShape selectedItem'
+            cutAllBtn.parentNode.className = 'selectBtn selectAllCut selectedItem'
+            finishAllBtn.parentNode.className = 'selectBtn selectAllFinish selectedItem'
+            symmetryAllBtn.parentNode.className = 'selectBtn selectAllSymmetry selectedItem'
             for (var cutCheck of cutChecks) {
                 cutCheck.checked = false;
             }
@@ -490,11 +523,15 @@
 
         if (cutBtn.value == 'VG+') {
 
-            cutValue.value = 'EX,VG';
-            finishValue.value = 'EX,VG';
-            symmetryValue.value = 'EX,VG';
+            myCut = ['EX', 'VG'];
+            cutValue.value = myCut;
+            myFinish = ['EX', 'VG'];
+            finishValue.value = myFinish;
+            mySymmetry = ['EX', 'VG'];
+            symmetryValue.value = mySymmetry;
 
             for (var cutCheck of cutChecks) {
+                cutCheck.checked = false;
                 if (cutCheck.value == 'EX') {
                     cutCheck.checked = true;
                     selectAllCut.className = 'selectBtn selectAllCut';
@@ -505,6 +542,7 @@
                 }
             }
             for (var finishCheck of finishChecks) {
+                finishCheck.checked = false;
                 if (finishCheck.value == 'EX') {
                     finishCheck.checked = true;
                     selectAllFinish.className = 'selectBtn selectAllFinish';
@@ -515,6 +553,7 @@
                 }
             }
             for (var symmetryCheck of symmetryChecks) {
+                symmetryCheck.checked = false;
                 if (symmetryCheck.value == 'EX') {
                     symmetryCheck.checked = true;
                     selectAllSymmetry.className = 'selectBtn selectAllSymmetry';
@@ -528,9 +567,12 @@
 
         if (cutBtn.value == 'VG-') {
 
-            cutValue.value = 'GD,VG,FR';
-            finishValue.value = 'GD,VG,FR';
-            symmetryValue.value = 'GD,VG,FR';
+            myCut = ['GD', 'VG', 'FR']
+            cutValue.value = myCut;
+            myFinish = ['GD', 'VG', 'FR']
+            finishValue.value = myFinish;
+            mySymmetry = ['GD', 'VG', 'FR']
+            symmetryValue.value = mySymmetry;
 
             for (var cutCheck of cutChecks) {
                 cutCheck.checked = false;
@@ -580,5 +622,9 @@
         }
     }
 
+
+    document.addEventListener('change', () => {
+        console.log('document changed')
+    })
 
 </script>
