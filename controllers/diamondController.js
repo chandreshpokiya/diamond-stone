@@ -3,7 +3,10 @@ import Diamond from "../models/diamondSchema.js";
 export const getDiamonds = async (req, res) => {
   try {
     const diamonds = await Diamond.find({});
-    return res.render("diamond_list.ejs", { diamonds: diamonds, loggedUser: req.user });
+    return res.render("diamond_list.ejs", {
+      diamonds: diamonds,
+      loggedUser: req.user,
+    });
   } catch (err) {
     console.log(err.message);
     return res.redirect("/");
@@ -24,43 +27,43 @@ export const filterDiamond = async (req, res) => {
   if (req.body.shapes == "all") {
     shapes = await Diamond.distinct("shape");
   } else {
-    shapes = req.body.shapes.pop().split(',');
+    shapes = req.body.shapes.pop().split(",");
   }
 
   if (req.body.colors == "all") {
     colors = await Diamond.distinct("color");
   } else {
-    colors = req.body.colors.pop().split(',');
+    colors = req.body.colors.pop().split(",");
   }
 
   if (req.body.clarities == "all") {
     clarities = await Diamond.distinct("clarity");
   } else {
-    clarities = req.body.clarities.pop().split(',');
+    clarities = req.body.clarities.pop().split(",");
   }
 
   if (req.body.cuts == "all") {
     cuts = await Diamond.distinct("cut");
   } else {
-    cuts = req.body.cuts.pop().split(',');
+    cuts = req.body.cuts.pop().split(",");
   }
 
   if (req.body.finishes == "all") {
     finishes = await Diamond.distinct("finish");
   } else {
-    finishes = req.body.finishes.pop().split(',');
+    finishes = req.body.finishes.pop().split(",");
   }
 
   if (req.body.symmetries == "all") {
     symmetries = await Diamond.distinct("symmetry");
   } else {
-    symmetries = req.body.symmetries.pop().split(',');
+    symmetries = req.body.symmetries.pop().split(",");
   }
 
   if (req.body.labs == "all") {
     labs = await Diamond.distinct("lab");
   } else {
-    labs = req.body.labs.pop().split(',');
+    labs = req.body.labs.pop().split(",");
   }
 
   // console.log({
@@ -139,8 +142,27 @@ export const addDiamond = async (req, res) => {
       pav,
       depth,
     } = req.body;
-    if (!shape || !color || !clarity || !cut || !finish || !symmetry || !lab || !flurocent || !girdle || !stno || !carat || !rap || !lwratio || !measurement || !table || !crown || !pav || !depth) {
-      console.log("All fields are required");
+    if (
+      !shape ||
+      !color ||
+      !clarity ||
+      !cut ||
+      !finish ||
+      !symmetry ||
+      !lab ||
+      !flurocent ||
+      !girdle ||
+      !stno ||
+      !carat ||
+      !rap ||
+      !lwratio ||
+      !measurement ||
+      !table ||
+      !crown ||
+      !pav ||
+      !depth
+    ) {
+      req.flash("error", "all fields are required");
       return res.redirect("/diamond/adddiamond");
     }
     await Diamond.create(req.body);

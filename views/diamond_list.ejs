@@ -1,117 +1,117 @@
-
-    <div class="container">
-        <div class="my-3">
-            <a href="/">back</a>
-        </div>
+<div class="container">
+    <div class="my-3">
+        <a href="/">back</a>
     </div>
+</div>
 
-    <main>
-        <% if(diamonds.length>0){ %>
+<main>
+    <% if(diamonds.length>0){ %>
 
-            <div class="table-responsives">
-                <table class="table table-bordered border-dark diamond-data-table">
-                    <thead>
+        <div class="table-responsives">
+            <table class="table table-bordered border-dark diamond-data-table">
+                <thead>
+                    <tr>
+                        <th scope="col"><input type="checkbox"></th>
+                        <th scope="col">SHAPE</th>
+                        <th scope="col">LAB</th>
+                        <th scope="col">COLOR</th>
+                        <th scope="col">CLARITY</th>
+                        <th scope="col">CUT</th>
+                        <th scope="col">FINISH</th>
+                        <th scope="col">SYMMETRY</th>
+                        <th scope="col">FLUROCENT</th>
+                        <th scope="col">GRIDLE</th>
+                        <th scope="col">CARATE</th>
+                        <th scope="col">RAP *</th>
+                        <th scope="col">L:W RATIO</th>
+                        <th scope="col">MEASUREMENT</th>
+                        <th scope="col">TABLE</th>
+                        <th scope="col">CROWN</th>
+                        <th scope="col">PAV</th>
+                        <th scope="col">DEPTH</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for( var diamond of diamonds) { %>
                         <tr>
-                            <th scope="col"><input type="checkbox"></th>
-                            <th scope="col">SHAPE</th>
-                            <th scope="col">LAB</th>
-                            <th scope="col">COLOR</th>
-                            <th scope="col">CLARITY</th>
-                            <th scope="col">CUT</th>
-                            <th scope="col">FINISH</th>
-                            <th scope="col">SYMMETRY</th>
-                            <th scope="col">FLUROCENT</th>
-                            <th scope="col">GRIDLE</th>
-                            <th scope="col">CARATE</th>
-                            <th scope="col">RAP *</th>
-                            <th scope="col">L:W RATIO</th>
-                            <th scope="col">MEASUREMENT</th>
-                            <th scope="col">TABLE</th>
-                            <th scope="col">CROWN</th>
-                            <th scope="col">PAV</th>
-                            <th scope="col">DEPTH</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for( var diamond of diamonds) { %>
-                            <tr>
-                                <td scope="row">
-                                    <input type="checkbox">
-                                </td>
-                                <td>
-                                    <img src="http://www.karpgroup.com/Images/Shapes/<%= diamond.shape %>.png" alt="">
+                            <td scope="row">
+                                <input type="checkbox">
+                            </td>
+                            <td>
+                                <img src="http://www.karpgroup.com/Images/Shapes/<%= diamond.shape %>.png" alt="">
+                                <%= diamond.shape %>
                                     <!-- <%= diamond.shape %> -->
-                                </td>
-                                <td>
-                                    <%= diamond.lab %>
-                                </td>
-                                <td>
-                                    <%= diamond.color %>
-                                </td>
-                                <td>
-                                    <%= diamond.clarity %>
-                                </td>
-                                <td>
-                                    <%= diamond.cut %>
-                                </td>
-                                <td>
-                                    <%= diamond.finish %>
-                                </td>
-                                <td>
-                                    <%= diamond.symmetry %>
-                                </td>
-                                <td>
-                                    <%= diamond.flurocent %>
-                                </td>
-                                <td>
-                                    <%= diamond.girdle %>
-                                </td>
-                                <td>
-                                    <%= diamond.carat %>
-                                </td>
-                                <td>
-                                    <%= diamond.rap %>
-                                </td>
-                                <td>
-                                    <%= diamond.lwratio %>
-                                </td>
-                                <td>
-                                    <%= diamond.measurement %>
-                                </td>
-                                <td>
-                                    <%= diamond.table %>
-                                </td>
-                                <td>
-                                    <%= diamond.crown %>
-                                </td>
-                                <td>
-                                    <%= diamond.pav %>
-                                </td>
-                                <td>
-                                    <%= diamond.depth  %>
-                                </td>
+                            </td>
+                            <td>
+                                <%= diamond.lab %>
+                            </td>
+                            <td>
+                                <%= diamond.color %>
+                            </td>
+                            <td>
+                                <%= diamond.clarity %>
+                            </td>
+                            <td>
+                                <%= diamond.cut %>
+                            </td>
+                            <td>
+                                <%= diamond.finish %>
+                            </td>
+                            <td>
+                                <%= diamond.symmetry %>
+                            </td>
+                            <td>
+                                <%= diamond.flurocent %>
+                            </td>
+                            <td>
+                                <%= diamond.girdle %>
+                            </td>
+                            <td>
+                                <%= diamond.carat %>
+                            </td>
+                            <td>
+                                <%= diamond.rap %>
+                            </td>
+                            <td>
+                                <%= diamond.lwratio %>
+                            </td>
+                            <td>
+                                <%= diamond.measurement %>
+                            </td>
+                            <td>
+                                <%= diamond.table %>
+                            </td>
+                            <td>
+                                <%= diamond.crown %>
+                            </td>
+                            <td>
+                                <%= diamond.pav %>
+                            </td>
+                            <td>
+                                <%= diamond.depth %>
+                            </td>
 
-                            </tr>
-                            <% } %>
-                    </tbody>
-                </table>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+
+        <% } else { %>
+            <div class="text-center my-3">
+                <p class="text-danger fs-4">No Data available</p>
             </div>
-
-            <% } else { %>
-                <div class="text-center my-3">
-                    <p class="text-danger fs-4">No Data available</p>
-                </div>
-                <% } %>
-    </main>
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="/js/popper.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="/js/index.js"></script>
-    <script>
-        $(document).ready(() => {
-            $('.mob-menu span').click(() => {
-                $('.main-menu').slideToggle();
-            });
+            <% } %>
+</main>
+<!-- Bootstrap JavaScript Libraries -->
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="/js/index.js"></script>
+<script>
+    $(document).ready(() => {
+        $('.mob-menu span').click(() => {
+            $('.main-menu').slideToggle();
         });
-    </script>
+    });
+</script>

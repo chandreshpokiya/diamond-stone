@@ -11,9 +11,9 @@
                         <tr>
                             <th>SHAPE</th>
                             <td>
-                                <div class="d-flex flex-wrap mb-3">
+                                <div class="d-flex flex-wrap mb-2">
                                     <% for (var i=0; i<shapes.length; i++) { %>
-                                        <span class="selectBtn">
+                                        <span class="selectBtn" id="selectBtn-shape">
                                             <input type="radio" class="d-checkbox" name="shape" id="<%= shapes[i] %>"
                                                 value="<%= shapes[i] %>">
                                             <label for="<%= shapes[i] %>">
@@ -32,7 +32,7 @@
                             <tr>
                                 <th>COLORS</th>
                                 <td>
-                                    <div class="d-flex mb-3">
+                                    <div class="d-flex mb-2">
                                         <% for (var i=0; i<colors.length; i++) { %>
                                             <span class="selectBtn">
                                                 <input type="radio" name="color" id="<%= colors[i] %>"
@@ -50,7 +50,7 @@
                                 <tr>
                                     <th>CLARITY</th>
                                     <td>
-                                        <div class="d-flex ">
+                                        <div class="d-flex mb-2">
                                             <% for (var i=0; i<clarity.length; i++) { %>
                                                 <span class="selectBtn">
                                                     <input type="radio" name="clarity" id="<%= clarity[i] %>"
@@ -68,7 +68,7 @@
                                     <tr>
                                         <th>CUT</th>
                                         <td>
-                                            <div class="d-flex ">
+                                            <div class="d-flex mb-2">
                                                 <% for (var i=0; i<cut.length; i++) { %>
                                                     <span class="selectBtn">
                                                         <input type="radio" name="cut" id="c<%= cut[i] %>"
@@ -86,7 +86,7 @@
                                         <tr>
                                             <th>FINISH</th>
                                             <td>
-                                                <div class="d-flex ">
+                                                <div class="d-flex mb-2">
                                                     <% for (var i=0; i<finish.length; i++) { %>
                                                         <span class="selectBtn">
                                                             <input type="radio" name="finish" id="f<%= finish[i] %>"
@@ -104,7 +104,7 @@
                                             <tr>
                                                 <th>SYMMETRY</th>
                                                 <td>
-                                                    <div class="d-flex ">
+                                                    <div class="d-flex mb-2">
                                                         <% for (var i=0; i<symmetry .length; i++) { %>
                                                             <span class="selectBtn">
                                                                 <input type="radio" name="symmetry"
@@ -123,7 +123,7 @@
                                                 <tr>
                                                     <th>LAB</th>
                                                     <td>
-                                                        <div class="d-flex ">
+                                                        <div class="d-flex mb-2">
                                                             <% for (var i=0; i<lab .length; i++) { %>
                                                                 <span class="selectBtn">
                                                                     <input type="radio" name="lab" id="<%= lab [i] %>"
@@ -143,7 +143,7 @@
                                                     <tr>
                                                         <th>FLUROCENT</th>
                                                         <td>
-                                                            <div class="d-flex ">
+                                                            <div class="d-flex mb-2">
                                                                 <% for (var i=0; i<flurocent.length; i++) { %>
                                                                     <span class="selectBtn">
                                                                         <input type="radio" name="flurocent"
@@ -162,7 +162,7 @@
                                                         <tr>
                                                             <th>GIRDLE</th>
                                                             <td>
-                                                                <div class="d-flex ">
+                                                                <div class="d-flex mb-2">
                                                                     <% for (var i=0; i<girdle.length; i++) { %>
                                                                         <span class="selectBtn">
                                                                             <input type="radio" name="girdle"
@@ -180,8 +180,8 @@
                                                         <tr>
                                                             <th>ST No.</th>
                                                             <td>
-                                                                <div class="d-flex ">
-                                                                    <input type="number" class="form-control" min="0"
+                                                                <div class="d-flex mb-2">
+                                                                    <input type="number" class="form-control w-50" min="0"
                                                                         name="stno" placeholder="St. No">
                                                                 </div>
                                                             </td>
@@ -189,8 +189,8 @@
                                                         <tr>
                                                             <th>CARAT</th>
                                                             <td>
-                                                                <div class="d-flex ">
-                                                                    <input type="text" class="form-control" name="carat"
+                                                                <div class="d-flex mb-2">
+                                                                    <input type="text" class="form-control  w-50" name="carat"
                                                                         placeholder="Carat">
                                                                 </div>
                                                             </td>
@@ -198,8 +198,8 @@
                                                         <tr>
                                                             <th>RAP *</th>
                                                             <td>
-                                                                <div class="d-flex ">
-                                                                    <input type="number" class="form-control" min="0"
+                                                                <div class="d-flex mb-2">
+                                                                    <input type="number" class="form-control  w-50" min="0"
                                                                         name="rap" placeholder="RAP">
                                                                 </div>
                                                             </td>
@@ -207,8 +207,8 @@
                                                         <tr>
                                                             <th>L:W RATIO</th>
                                                             <td>
-                                                                <div class="d-flex ">
-                                                                    <input type="text" class="form-control"
+                                                                <div class="d-flex mb-2">
+                                                                    <input type="text" class="form-control  w-50"
                                                                         name="lwratio" placeholder="L:W RATIO">
                                                                 </div>
                                                             </td>
@@ -216,8 +216,8 @@
                                                         <tr>
                                                             <th>MEASUREMENT</th>
                                                             <td>
-                                                                <div class="d-flex ">
-                                                                    <input type="text" class="form-control" min="0"
+                                                                <div class="d-flex mb-2">
+                                                                    <input type="text" class="form-control  w-50" min="0"
                                                                         name="measurement" placeholder="Measurement">
                                                                 </div>
                                                             </td>
@@ -225,8 +225,8 @@
                                                         <tr>
                                                             <th>Table</th>
                                                             <td>
-                                                                <div class="d-flex ">
-                                                                    <input type="number" class="form-control" min="0"
+                                                                <div class="d-flex mb-2">
+                                                                    <input type="number" class="form-control  w-50" min="0"
                                                                         name="table" placeholder="table">
                                                                 </div>
                                                             </td>
@@ -234,8 +234,8 @@
                                                         <tr>
                                                             <th>Crown</th>
                                                             <td>
-                                                                <div class="d-flex ">
-                                                                    <input type="text" class="form-control" min="0"
+                                                                <div class="d-flex mb-2">
+                                                                    <input type="text" class="form-control w-50" min="0"
                                                                         name="crown" placeholder="Crown">
                                                                 </div>
                                                             </td>
@@ -243,8 +243,8 @@
                                                         <tr>
                                                             <th>PAV.</th>
                                                             <td>
-                                                                <div class="d-flex ">
-                                                                    <input type="text" class="form-control" name="pav"
+                                                                <div class="d-flex mb-2">
+                                                                    <input type="text" class="form-control w-50" name="pav"
                                                                         placeholder="pavilion">
                                                                 </div>
                                                             </td>
@@ -252,8 +252,8 @@
                                                         <tr>
                                                             <th>Depth</th>
                                                             <td>
-                                                                <div class="d-flex ">
-                                                                    <input type="text" class="form-control" name="depth"
+                                                                <div class="d-flex mb-2">
+                                                                    <input type="text" class="form-control w-50" name="depth"
                                                                         placeholder="Depth">
                                                                 </div>
                                                             </td>

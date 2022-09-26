@@ -10,11 +10,10 @@ export default (req, res, next) => {
   return jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
       console.log("invalid token");
-      req.flash("error", "Invalid token! login again");
+      req.flash("error", "Session expired!");
       return res.redirect("/auth/login");
     }
     req.user = decoded;
-    req.flash("success", "Authenticated success");
     return next();
   });
 };
